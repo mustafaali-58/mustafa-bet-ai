@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact",
+    "resources": "Resources"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Mustafa Ali",
+    "title": "Data Analyst & Tech Specialist",
+    "description": "I add value to corporate processes through data analytics and computer system infrastructures.",
+    "cta_projects": "View Projects",
+    "cta_contact": "Get in Touch"
+  },
+  "home": {
+    "featured_projects": "Featured Projects",
+    "featured_projects_desc": "Some of my recent work",
+    "latest_posts": "Latest Blog Posts",
+    "latest_posts_desc": "Thoughts on technology, software, and more",
+    "view_all_projects": "View All Projects",
+    "view_all_posts": "View All Posts"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Independent, confident, highly persistent, and friendly",
+    "bio": "With years of experience in data analytics, computer systems, and AutoCAD, I am a detail-oriented professional who always aims for the best. I currently work as a Data Analyst & Reporter at SASA Polyester.",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Projects I've designed and developed",
+    "all": "All",
+    "live_demo": "Live Demo",
+    "source_code": "Source Code",
+    "view_project": "View Project",
+    "back_to_projects": "Back to Projects",
+    "description_title": "About the Project",
+    "view_live_demo": "View Live Demo",
+    "view_on_github": "View on GitHub"
+  },
+  "resources": {
+    "title": "Resources",
+    "description": "Curated list of the best free tools and services for developers.",
+    "explore": "Visit Resource"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articles about technology, software, and my thoughts",
+    "read_more": "Read More",
+    "min_read": "min read",
+    "search_placeholder": "Search posts...",
+    "no_posts": "No posts yet.",
+    "back_to_blog": "Back to Blog",
+    "share": "Share",
+    "published": "Published"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have a project in mind? Let's work together.",
+    "name_label": "Your Name",
+    "email_label": "Email",
+    "message_label": "Your Message",
+    "send": "Send",
+    "sending": "Sending...",
+    "success": "Message received! I'll get back to you soon.",
+    "error": "Something went wrong. Please try again.",
+    "or_reach": "Or reach out directly"
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "built_with": "Built with Next.js"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "language": {
+    "switch": "TR"
+  }
+}

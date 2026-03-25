@@ -1,0 +1,127 @@
+.page {
+  min-height: 100vh;
+  padding: var(--space-3xl) 0;
+}
+
+.article {
+  max-width: 780px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  margin-bottom: var(--space-2xl);
+}
+
+.backLink:hover {
+  color: var(--color-accent-cyan);
+}
+
+.header {
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.readTime {
+  color: var(--color-accent-purple);
+  font-family: var(--font-mono);
+}
+
+.title {
+  font-size: var(--text-4xl);
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+}
+
+.description {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+/* Content Styles */
+.content {
+  font-size: var(--text-lg);
+  line-height: 1.8;
+}
+
+.content h2 {
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+  font-size: var(--text-2xl);
+}
+
+.content h3 {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
+
+.content p {
+  margin-bottom: var(--space-lg);
+  color: var(--color-text);
+}
+
+.content ul, .content ol {
+  margin-bottom: var(--space-lg);
+  padding-left: var(--space-xl);
+}
+
+.content li {
+  margin-bottom: var(--space-sm);
+}
+
+.content blockquote {
+  border-left: 3px solid var(--color-accent-cyan);
+  padding-left: var(--space-lg);
+  margin: var(--space-xl) 0;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.content pre {
+  margin: var(--space-xl) 0;
+}
+
+.content a {
+  color: var(--color-accent-cyan);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.content img {
+  border-radius: var(--radius-md);
+  margin: var(--space-xl) 0;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: var(--text-2xl);
+  }
+
+  .content {
+    font-size: var(--text-base);
+  }
+}

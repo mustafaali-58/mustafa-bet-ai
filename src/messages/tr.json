@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımda",
+    "projects": "Projeler",
+    "blog": "Blog",
+    "contact": "İletişim",
+    "resources": "Kaynaklar"
+  },
+  "hero": {
+    "greeting": "Merhaba, ben",
+    "name": "Mustafa Ali",
+    "title": "Veri Analisti & Teknoloji Uzmanı",
+    "description": "Veri analitiği ve bilgisayar sistemleri altyapıları ile şirket süreçlerine değer katıyorum.",
+    "cta_projects": "Projelerimi Gör",
+    "cta_contact": "İletişime Geç"
+  },
+  "home": {
+    "featured_projects": "Öne Çıkan Projeler",
+    "featured_projects_desc": "En son çalıştığım projelerden bazıları",
+    "latest_posts": "Son Blog Yazıları",
+    "latest_posts_desc": "Teknoloji, yazılım ve düşüncelerim",
+    "view_all_projects": "Tüm Projeleri Gör",
+    "view_all_posts": "Tüm Yazıları Gör"
+  },
+  "about": {
+    "title": "Hakkımda",
+    "subtitle": "Bağımsız, kendine güvenen, istediğini alan, aşırı inatçı ve arkadaş canlısı",
+    "bio": "Veri analitiği, bilgisayar sistemleri ve AutoCAD üzerine yıllara dayanan tecrübemle, detaylara odaklanan ve her zaman en iyisini hedefleyen bir profesyonelim. SASA Polyester bünyesinde Veri Analisti olarak görev yapıyorum.",
+    "experience": "Deneyim",
+    "skills": "Yetenekler",
+    "education": "Eğitim"
+  },
+  "projects": {
+    "title": "Projeler",
+    "subtitle": "Tasarladığım ve geliştirdiğim projeler",
+    "all": "Tümü",
+    "live_demo": "Canlı Demo",
+    "source_code": "Kaynak Kod",
+    "view_project": "Projeyi İncele",
+    "back_to_projects": "Projelere Dön",
+    "description_title": "Proje Hakkında",
+    "view_live_demo": "Canlı Demoyu Görüntüle",
+    "view_on_github": "GitHub'da Gör"
+  },
+  "resources": {
+    "title": "Kaynaklar",
+    "description": "Geliştiriciler için özenle seçilmiş en iyi ücretsiz araçlar ve servisler.",
+    "explore": "Kaynağa Git"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Teknoloji, yazılım ve düşüncelerim hakkında yazılar",
+    "read_more": "Devamını Oku",
+    "min_read": "dk okuma",
+    "search_placeholder": "Yazılarda ara...",
+    "no_posts": "Henüz yazı yok.",
+    "back_to_blog": "Blog'a Dön",
+    "share": "Paylaş",
+    "published": "Yayınlanma"
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Bir projeniz mi var? Birlikte çalışalım.",
+    "name_label": "Adınız",
+    "email_label": "E-posta",
+    "message_label": "Mesajınız",
+    "send": "Gönder",
+    "sending": "Gönderiliyor...",
+    "success": "Mesajınız alındı! En kısa sürede dönüş yapacağım.",
+    "error": "Bir hata oluştu. Lütfen tekrar deneyin.",
+    "or_reach": "Ya da doğrudan ulaşın"
+  },
+  "footer": {
+    "copyright": "Tüm hakları saklıdır.",
+    "built_with": "Next.js ile geliştirildi"
+  },
+  "theme": {
+    "dark": "Karanlık",
+    "light": "Aydınlık"
+  },
+  "language": {
+    "switch": "EN"
+  }
+}

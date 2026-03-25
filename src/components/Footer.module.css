@@ -1,0 +1,116 @@
+.footer {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  padding: var(--space-3xl) 0 var(--space-xl);
+}
+
+.footerInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.footerTop {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-2xl);
+}
+
+.logo {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--color-heading);
+  letter-spacing: -0.03em;
+}
+
+.logoDot {
+  background: var(--gradient-aurora);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brandDesc {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-top: var(--space-sm);
+}
+
+.footerTitle {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footerLink {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footerLink:hover {
+  color: var(--color-accent-cyan);
+}
+
+.socialIcons {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+}
+
+.socialLink:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan);
+  transform: translateY(-2px);
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-dim);
+}
+
+.builtWith {
+  color: var(--color-text-dim);
+}
+
+@media (max-width: 768px) {
+  .footerTop {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+  }
+}
