@@ -33,17 +33,35 @@ export async function POST(request) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'models/gemini-1.5-flash' });
+    
+    // Try multiple model names for compatibility
+    let reply = null;
+    const modelNames = ['gemini-1.5-flash', 'models/gemini-1.5-flash', 'gemini-pro'];
+    
+    for (const modelName of modelNames) {
+      try {
+        const model = genAI.getGenerativeModel({ model: modelName });
+        const result = await model.generateContent(`${SYSTEM_PROMPT}\n\nKullanıcı sorusu: ${message}`);
+        const response = result.response;
+        reply = response.text();
+        break;
+      } catch (modelError) {
+        console.error(`Model ${modelName} failed:`, modelError.message);
+        continue;
+      }
+    }
 
-    const result = await model.generateContent(`${SYSTEM_PROMPT}\n\nKullanıcı sorusu: ${message}`);
-    const response = await result.response;
-    const reply = response.text();
+    if (!reply) {
+      return NextResponse.json({ 
+        reply: 'AI asistan şu an yanıt veremiyor. Lütfen daha sonra tekrar deneyin.' 
+      }, { status: 200 });
+    }
 
     return NextResponse.json({ reply }, { status: 200 });
   } catch (error) {
-    console.error('Chat API Error:', error);
+    console.error('Chat API Error:', error.message);
     return NextResponse.json({ 
-      reply: 'Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.' 
+      reply: `Bir hata oluştu: ${error.message}` 
     }, { status: 200 });
   }
 }
