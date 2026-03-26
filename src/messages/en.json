@@ -55,9 +55,21 @@
     "min_read": "min read",
     "search_placeholder": "Search posts...",
     "no_posts": "No posts yet.",
+    "no_results": "No results found.",
+    "results": "results found",
+    "all": "All",
     "back_to_blog": "Back to Blog",
     "share": "Share",
     "published": "Published"
+  },
+  "newsletter": {
+    "title": "Subscribe to Newsletter",
+    "description": "Get the latest tech news and blog posts delivered to your inbox.",
+    "placeholder": "Your email address",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "success": "Successfully subscribed! 🎉",
+    "error": "Something went wrong. Please try again."
   },
   "contact": {
     "title": "Contact",
