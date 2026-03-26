@@ -32,8 +32,8 @@ export async function POST(request) {
       }, { status: 200 });
     }
 
-    // Use gemini-1.5-pro as it's the standard available model
-    const modelName = 'gemini-1.5-pro';
+    // Use gemini-2.5-flash as it is the model explicitly permitted by the configured API key
+    const modelName = 'gemini-2.5-flash';
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
     
     try {
