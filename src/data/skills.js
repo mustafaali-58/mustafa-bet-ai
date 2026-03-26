@@ -47,12 +47,12 @@ export const experience = [
 
 export const education = [
   {
-    degree: { tr: 'Bilgisayar Programcılığı', en: 'Computer Programming' },
+    degree: { tr: 'Elektrik', en: 'Electrical Engineering' },
     school: 'Çukurova Üniversitesi',
     period: { tr: '2009 - 2011', en: '2009 - 2011' },
     description: {
-      tr: 'Bilgisayar programlama ve yazılım geliştirme eğitimi.',
-      en: 'Computer programming and software development education.'
+      tr: 'Elektrik alanında teknik eğitim.',
+      en: 'Technical education in Electrical Engineering.'
     }
   }
 ];

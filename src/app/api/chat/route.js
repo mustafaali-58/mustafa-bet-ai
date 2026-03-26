@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const SYSTEM_PROMPT = `Sen Mustafa Ali Solmazgül'ün kişisel web sitesindeki AI asistanısın.
 Mustafa Ali hakkında bilgiler:
@@ -7,6 +6,7 @@ Mustafa Ali hakkında bilgiler:
 - Veri analitiği, bilgisayar sistemleri ve AutoCAD konularında uzman
 - Alone Computer & Satellite Systems'in kurucusu (2012-2018)
 - Çukurova Halk Eğitim Merkezi'nde AutoCAD eğitmeni (2011-2012)
+- Çukurova Üniversitesi Elektrik bölümü mezunu (2009-2011)
 - Bağımsız, kendine güvenen, detaylara odaklanan ve arkadaş canlısı bir profesyonel
 - Projeleri: EdgeGlimpse (Finans dashboard), AI Trading Bot, Portfolyo sitesi
 - Teknolojileri: Data Analysis, AutoCAD, IT Systems, Hardware & Network
@@ -28,40 +28,43 @@ export async function POST(request) {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ 
-        reply: 'AI asistan şu an kullanılamıyor. Lütfen daha sonra tekrar deneyin.' 
+        reply: 'API anahtarı bulunamadı. Vercel ortam değişkenlerini kontrol edin.' 
       }, { status: 200 });
     }
 
-    const genAI = new GoogleGenerativeAI(apiKey);
+    // Use REST API directly instead of SDK for maximum compatibility
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
-    // Try multiple model names for compatibility
-    let reply = null;
-    const modelNames = ['gemini-1.5-flash', 'models/gemini-1.5-flash', 'gemini-pro'];
-    
-    for (const modelName of modelNames) {
-      try {
-        const model = genAI.getGenerativeModel({ model: modelName });
-        const result = await model.generateContent(`${SYSTEM_PROMPT}\n\nKullanıcı sorusu: ${message}`);
-        const response = result.response;
-        reply = response.text();
-        break;
-      } catch (modelError) {
-        console.error(`Model ${modelName} failed:`, modelError.message);
-        continue;
-      }
-    }
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{ text: `${SYSTEM_PROMPT}\n\nKullanıcı sorusu: ${message}` }]
+        }],
+        generationConfig: {
+          maxOutputTokens: 500,
+          temperature: 0.7
+        }
+      })
+    });
 
-    if (!reply) {
+    const data = await res.json();
+
+    if (!res.ok) {
+      console.error('Gemini API Error:', JSON.stringify(data));
       return NextResponse.json({ 
-        reply: 'AI asistan şu an yanıt veremiyor. Lütfen daha sonra tekrar deneyin.' 
+        reply: `API Hatası: ${data.error?.message || 'Bilinmeyen hata'}` 
       }, { status: 200 });
     }
 
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Yanıt alınamadı.';
     return NextResponse.json({ reply }, { status: 200 });
+
   } catch (error) {
-    console.error('Chat API Error:', error.message);
+    console.error('Chat Error:', error.message);
     return NextResponse.json({ 
-      reply: `Bir hata oluştu: ${error.message}` 
+      reply: `Hata: ${error.message}` 
     }, { status: 200 });
   }
 }
