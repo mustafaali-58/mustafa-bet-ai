@@ -32,33 +32,48 @@ export async function POST(request) {
       }, { status: 200 });
     }
 
-    // Use REST API directly instead of SDK for maximum compatibility
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-    
-    const res = await fetch(apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{
-          parts: [{ text: `${SYSTEM_PROMPT}\n\nKullanıcı sorusu: ${message}` }]
-        }],
-        generationConfig: {
-          maxOutputTokens: 500,
-          temperature: 0.7
+    // Try gemini-2.0-flash first, then gemini-pro as fallback
+    const models = ['gemini-2.0-flash', 'gemini-pro'];
+    let reply = null;
+    let lastError = null;
+
+    for (const modelName of models) {
+      try {
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+        
+        const res = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{ text: `${SYSTEM_PROMPT}\n\nKullanıcı sorusu: ${message}` }]
+            }],
+            generationConfig: {
+              maxOutputTokens: 500,
+              temperature: 0.7
+            }
+          })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.candidates?.[0]?.content?.parts?.[0]?.text) {
+          reply = data.candidates[0].content.parts[0].text;
+          break;
+        } else {
+          lastError = data.error?.message || 'Unknown error';
         }
-      })
-    });
+      } catch (e) {
+        lastError = e.message;
+      }
+    }
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      console.error('Gemini API Error:', JSON.stringify(data));
+    if (!reply) {
       return NextResponse.json({ 
-        reply: `API Hatası: ${data.error?.message || 'Bilinmeyen hata'}` 
+        reply: `API Hatası: ${lastError}` 
       }, { status: 200 });
     }
 
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Yanıt alınamadı.';
     return NextResponse.json({ reply }, { status: 200 });
 
   } catch (error) {
