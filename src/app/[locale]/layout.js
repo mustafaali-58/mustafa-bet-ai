@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ChatBot from '@/components/ChatBot';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -62,6 +63,7 @@ export default async function LocaleLayout({ children, params }) {
             {children}
           </main>
           <Footer />
+          <ChatBot />
         </NextIntlClientProvider>
       </body>
     </html>

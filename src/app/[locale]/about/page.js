@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { getLocale } from 'next-intl/server';
-import { skills, experience } from '@/data/skills';
+import { skills, experience, education } from '@/data/skills';
 import styles from './About.module.css';
 
 export async function generateMetadata() {
@@ -74,6 +74,25 @@ function AboutContent({ locale }) {
                   <h3 className={styles.expTitle}>{exp.title[locale]}</h3>
                   <p className={styles.company}>{exp.company}</p>
                   <p className={styles.expDesc}>{exp.description[locale]}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`section ${styles.expSection}`}>
+        <div className="container">
+          <h2 className="section-title">{t('education')}</h2>
+          <div className={styles.timeline}>
+            {education.map((edu, i) => (
+              <div key={i} className={`glass-card ${styles.timelineItem}`}>
+                <div className={styles.timelineDot}></div>
+                <div className={styles.timelineContent}>
+                  <span className={styles.period}>{edu.period[locale]}</span>
+                  <h3 className={styles.expTitle}>{edu.degree[locale]}</h3>
+                  <p className={styles.company}>{edu.school}</p>
+                  <p className={styles.expDesc}>{edu.description[locale]}</p>
                 </div>
               </div>
             ))}

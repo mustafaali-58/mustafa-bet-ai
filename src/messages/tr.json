@@ -55,9 +55,21 @@
     "min_read": "dk okuma",
     "search_placeholder": "Yazılarda ara...",
     "no_posts": "Henüz yazı yok.",
+    "no_results": "Sonuç bulunamadı.",
+    "results": "sonuç bulundu",
+    "all": "Tümü",
     "back_to_blog": "Blog'a Dön",
     "share": "Paylaş",
     "published": "Yayınlanma"
+  },
+  "newsletter": {
+    "title": "Bültenimize Abone Olun",
+    "description": "En son teknoloji haberleri ve blog yazılarım doğrudan e-postanıza gelsin.",
+    "placeholder": "E-posta adresiniz",
+    "subscribe": "Abone Ol",
+    "subscribing": "Kaydediliyor...",
+    "success": "Başarıyla abone oldunuz! 🎉",
+    "error": "Bir hata oluştu. Lütfen tekrar deneyin."
   },
   "contact": {
     "title": "İletişim",
