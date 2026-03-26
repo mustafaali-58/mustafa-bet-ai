@@ -37,6 +37,8 @@ jobs:
           git push
 
       - name: Deploy to Vercel
+        if: ${{ secrets.VERCEL_TOKEN != '' }}
+        continue-on-error: true
         run: npx -y vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
