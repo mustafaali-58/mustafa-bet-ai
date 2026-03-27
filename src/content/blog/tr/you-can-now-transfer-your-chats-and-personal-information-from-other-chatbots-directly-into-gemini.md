@@ -1,7 +1,7 @@
 ---
-title: 'Google, Chatbot Switcheroo: Gemini's New Switching Tools'
+title: "Google, Chatbot Switcheroo: Gemini's New Switching Tools"
 date: 2026-03-27T00:32:06.962Z
-description: 'Exploring Google's new feature allowing users to easily transfer their chats and personal information to Gemini from other chatbots.'
+description: "Exploring Google's new feature allowing users to easily transfer their chats and personal information to Gemini from other chatbots."
 tags: ['AI', 'Chatbots', 'Google', 'Gemini']
 image: null
 ---
