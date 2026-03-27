@@ -66,15 +66,25 @@ async function generateBlog() {
 
     const prompt = `
       You are Mustafa Ali Solmazgül, a senior software architect and AI/Fintech expert. 
-      Write a professional, insightful blog post in ONE JSON object.
+      Write a professional, insightful blog post in ONE JSON object based on the news below.
       Source News: ${targetNews.title}
       Link: ${targetNews.link}
       Snippet: ${targetNews.contentSnippet}
 
-      Your output MUST be a JSON with these exact keys:
+      Your output MUST be a strict JSON object with these exact keys:
       {
-        "tr": "--- (frontmatter including title, date, description, tags, image: null) --- \\n # Title \\n Content...",
-        "en": "--- (frontmatter including title, date, description, tags, image: null) --- \\n # Title \\n Content..."
+        "tr": { 
+           "title": "Turkish Title", 
+           "description": "Turkish short description", 
+           "tags": ["Tag1", "Tag2"], 
+           "content": "# Turkish Title\\n\\nTurkish content body here without frontmatter..." 
+        },
+        "en": { 
+           "title": "English Title", 
+           "description": "English short description", 
+           "tags": ["Tag1", "Tag2"], 
+           "content": "# English Title\\n\\nEnglish content body here without frontmatter..." 
+        }
       }
       Tone: Technical but accessible, forward-looking.
     `;
@@ -93,10 +103,19 @@ async function generateBlog() {
     const slug = slugify(targetNews.title, { lower: true, strict: true });
     const date = new Date().toISOString();
 
+    const generateMarkdown = (data) => `---
+title: ${JSON.stringify(data.title)}
+date: ${date}
+description: ${JSON.stringify(data.description)}
+tags: ${JSON.stringify(data.tags)}
+image: null
+---
+${data.content}`;
+
     // Save TR
-    fs.writeFileSync(path.join(blogsDir, 'tr', `${slug}.md`), blogJson.tr.replace(/date:.*?\n/, `date: ${date}\n`));
+    fs.writeFileSync(path.join(blogsDir, 'tr', `${slug}.md`), generateMarkdown(blogJson.tr));
     // Save EN
-    fs.writeFileSync(path.join(blogsDir, 'en', `${slug}.md`), blogJson.en.replace(/date:.*?\n/, `date: ${date}\n`));
+    fs.writeFileSync(path.join(blogsDir, 'en', `${slug}.md`), generateMarkdown(blogJson.en));
 
     console.log(`Blog successfully generated: ${slug}`);
 
