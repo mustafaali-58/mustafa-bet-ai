@@ -50,7 +50,7 @@ export async function POST(request) {
     if (process.env.RESEND_API_KEY) {
       try {
         const { data, error } = await resend.emails.send({
-          from: 'Mustafa Ali Solmazgül <hello@mustafaalisolmazgul.com.tr>',
+          from: 'onboarding@resend.dev',
           to: email,
           subject: 'Bültene Hoş Geldiniz! 🎉',
           html: `
@@ -65,6 +65,8 @@ export async function POST(request) {
 
         if (error) {
           console.error('Resend Error:', error);
+        } else {
+          console.log('Resend success ID:', data?.id);
         }
       } catch (emailError) {
         console.error('Exception while sending email:', emailError);
