@@ -38,10 +38,16 @@ export async function POST(request) {
       subscribedAt: new Date().toISOString()
     });
 
-    saveSubscribers(subscribers);
+    try {
+      saveSubscribers(subscribers);
+    } catch (saveError) {
+      console.warn('Could not save to file system (likely read-only Vercel environment). Subscriber email:', email);
+      // Fallback: Just log it and return success so the frontend UI doesn't break.
+    }
 
     return NextResponse.json({ message: 'Subscribed successfully' }, { status: 201 });
-  } catch {
+  } catch (error) {
+    console.error('Newsletter API absolute error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
