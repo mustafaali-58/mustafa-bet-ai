@@ -1,9 +1,16 @@
 ---
-title: "Yapay Zeka Destekli Yazılım Geliştirme: Yeni Bir Çağ"
-date: "2026-03-20"
-description: "Yapay zekanın yazılım geliştirme süreçlerine etkisi, LLM'lerin rolü ve gelecekte bizi nelerin beklediği üzerine bir değerlendirme."
-tags: ["Yapay Zeka", "Yazılım Geliştirme", "LLM", "Gelecek"]
-author: "Mustafa Ali"
+title: 'Yapay Zeka Destekli Yazılım Geliştirme: Yeni Bir Çağ'
+date: '2026-03-20'
+description: >-
+  Yapay zekanın yazılım geliştirme süreçlerine etkisi, LLM'lerin rolü ve
+  gelecekte bizi nelerin beklediği üzerine bir değerlendirme.
+tags:
+  - Yapay Zeka
+  - Yazılım Geliştirme
+  - LLM
+  - Gelecek
+author: Mustafa Ali
+audio: /audio/tr/yapay-zeka-destekli-yazilim-gelistirme.mp3
 ---
 
 ## Kod Yazmanın Evrimi
