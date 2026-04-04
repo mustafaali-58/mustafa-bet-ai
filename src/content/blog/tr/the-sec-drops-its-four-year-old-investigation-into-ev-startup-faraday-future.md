@@ -1,9 +1,19 @@
 ---
- title: "Faraday Future'nin SEC Soruşturmasının Son Bulması: Geleceğe Dönük Bir Bakış"
- date: 2026-03-23T12:45:13.351Z
- description: "Faraday Future, dört yıllık bir SEC soruşturmasının ardından özgürlüğüne kavuştu. Bu gelişmenin şirketin geleceği ve elektrikli araç endüstrisi üzerindeki etkileri üzerine bir değerlendirme."
- tags: ["Faraday Future", "SEC", "Elektrikli Araçlar", "Fintech", "Yatırım"]
- image: null
+title: 'Faraday Future''nin SEC Soruşturmasının Son Bulması: Geleceğe Dönük Bir Bakış'
+date: 2026-03-23T12:45:13.351Z
+description: >-
+  Faraday Future, dört yıllık bir SEC soruşturmasının ardından özgürlüğüne
+  kavuştu. Bu gelişmenin şirketin geleceği ve elektrikli araç endüstrisi
+  üzerindeki etkileri üzerine bir değerlendirme.
+tags:
+  - Faraday Future
+  - SEC
+  - Elektrikli Araçlar
+  - Fintech
+  - Yatırım
+image: null
+audio: >-
+  /audio/tr/the-sec-drops-its-four-year-old-investigation-into-ev-startup-faraday-future.mp3
 ---
 # Faraday Future'nin SEC Soruşturmasının Son Bulması: Geleceğe Dönük Bir Bakış
 

@@ -1,9 +1,17 @@
 ---
- title: "Amazon'ün Rivr'ı Satın Alması: Teslimat Robotları Döneminde Yeni Bir Adım"
- date: 2026-03-19T23:29:47.398Z
- description: "Amazon, Rivr'ı satın alarak teslimat robotları alanında önemli bir hamle yaptı. Bu yazıda, bu satın almanın olası etkilerini inceleyeceğiz."
- tags: ["Amazon", "Rivr", "teslimat robotları", "satın alma", "otomasyon"]
- image: null
+title: 'Amazon''ün Rivr''ı Satın Alması: Teslimat Robotları Döneminde Yeni Bir Adım'
+date: 2026-03-19T23:29:47.398Z
+description: >-
+  Amazon, Rivr'ı satın alarak teslimat robotları alanında önemli bir hamle
+  yaptı. Bu yazıda, bu satın almanın olası etkilerini inceleyeceğiz.
+tags:
+  - Amazon
+  - Rivr
+  - teslimat robotları
+  - satın alma
+  - otomasyon
+image: null
+audio: /audio/tr/amazon-acquires-rivr-maker-of-a-stair-climbing-delivery-robot.mp3
 ---
  # Amazon'ün Rivr'ı Satın Alması: Teslimat Robotları Döneminde Yeni Bir Adım
 

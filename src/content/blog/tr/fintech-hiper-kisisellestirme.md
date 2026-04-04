@@ -1,9 +1,16 @@
 ---
-title: "Fintech'te Yapay Zeka ile Hiper-Kişiselleştirme"
-date: "2026-03-22"
-description: "Yapay zekanın finansal hizmetlerde kullanıcı deneyimini nasıl dönüştürdüğü ve hiper-kişiselleştirme stratejileri."
-tags: ["Fintech", "Yapay Zeka", "UX", "Kişiselleştirme"]
-author: "Mustafa Ali"
+title: Fintech'te Yapay Zeka ile Hiper-Kişiselleştirme
+date: '2026-03-22'
+description: >-
+  Yapay zekanın finansal hizmetlerde kullanıcı deneyimini nasıl dönüştürdüğü ve
+  hiper-kişiselleştirme stratejileri.
+tags:
+  - Fintech
+  - Yapay Zeka
+  - UX
+  - Kişiselleştirme
+author: Mustafa Ali
+audio: /audio/tr/fintech-hiper-kisisellestirme.mp3
 ---
 
 ## Finansal Hizmetlerin Geleceği: Sadece Size Özel

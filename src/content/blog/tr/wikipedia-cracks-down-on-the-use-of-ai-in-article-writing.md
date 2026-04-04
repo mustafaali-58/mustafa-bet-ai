@@ -1,9 +1,18 @@
 ---
-title: "Wikipedia'nın AI Yazımına Getirdiği Kısıtlamalar"
+title: Wikipedia'nın AI Yazımına Getirdiği Kısıtlamalar
 date: 2026-03-26T23:35:42.534Z
-description: "Wikipedia, AI tarafından üretilen içeriklerin kullanımına yönelik yeni kısıtlamalar getirdi; bu durum, bilgi paylaşımında kalitenin korunması adına önemli bir adım."
-tags: ["Wikipedia", "AI", "içerik yönetimi", "yazılım", "fintech"]
+description: >-
+  Wikipedia, AI tarafından üretilen içeriklerin kullanımına yönelik yeni
+  kısıtlamalar getirdi; bu durum, bilgi paylaşımında kalitenin korunması adına
+  önemli bir adım.
+tags:
+  - Wikipedia
+  - AI
+  - içerik yönetimi
+  - yazılım
+  - fintech
 image: null
+audio: /audio/tr/wikipedia-cracks-down-on-the-use-of-ai-in-article-writing.mp3
 ---
  # Wikipedia'nın AI Yazımına Getirdiği Kısıtlamalar 
  Günümüzde yapay zeka, içerik oluşturma süreçlerini köklü bir şekilde değiştiriyor. Ancak, Wikipedia gibi toplum temelli bilgi kaynaklarının AI destekli yazımla ilgili farklı bir yaklaşım geliştirmesi gerektiği anlaşılıyor. Wikipedia'nın son kararları, AI tarafından üretilen yazıların artan popülaritesiyle yüzleşme çabası olarak değerlendirilebilir. 

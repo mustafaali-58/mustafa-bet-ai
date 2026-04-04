@@ -103,20 +103,53 @@ async function generateBlog() {
     const slug = slugify(targetNews.title, { lower: true, strict: true });
     const date = new Date().toISOString();
 
-    const generateMarkdown = (data) => `---
+    console.log('Generating TTS Audio for podcasts...');
+    const generateAudioWithOpenAI = async (text, locale, postSlug) => {
+      try {
+        if (!process.env.OPENAI_API_KEY) {
+          console.warn('OPENAI_API_KEY missing, skipping audio generation');
+          return null;
+        }
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        const mp3 = await openai.audio.speech.create({
+          model: "tts-1",
+          voice: locale === 'tr' ? 'onyx' : 'echo',
+          input: text.slice(0, 4000), // Max 4096 chars
+        });
+        const buffer = Buffer.from(await mp3.arrayBuffer());
+        const audioDir = path.join(rootDir, 'public', 'audio', locale);
+        if (!fs.existsSync(audioDir)) {
+          fs.mkdirSync(audioDir, { recursive: true });
+        }
+        const audioPath = path.join(audioDir, `${postSlug}.mp3`);
+        fs.writeFileSync(audioPath, buffer);
+        console.log(`Audio successfully generated for ${locale}: ${postSlug}`);
+        return `/audio/${locale}/${postSlug}.mp3`;
+      } catch (e) {
+        console.error(`Audio generation failed for ${locale}:`, e.message);
+        return null;
+      }
+    };
+
+    const cleanForTTS = (text) => text.replace(/[#*`~>-]/g, '').trim();
+    const trAudioPath = await generateAudioWithOpenAI(cleanForTTS(blogJson.tr.title + '. ' + blogJson.tr.content), 'tr', slug);
+    const enAudioPath = await generateAudioWithOpenAI(cleanForTTS(blogJson.en.title + '. ' + blogJson.en.content), 'en', slug);
+
+    const generateMarkdown = (data, audioUrl) => `---
 title: ${JSON.stringify(data.title)}
 date: ${date}
 description: ${JSON.stringify(data.description)}
 tags: ${JSON.stringify(data.tags)}
 image: null
+audio: ${audioUrl ? JSON.stringify(audioUrl) : 'null'}
 ---
 ${data.content}`;
 
     // Save TR
-    fs.writeFileSync(path.join(blogsDir, 'tr', `${slug}.md`), generateMarkdown(blogJson.tr));
+    fs.writeFileSync(path.join(blogsDir, 'tr', `${slug}.md`), generateMarkdown(blogJson.tr, trAudioPath));
     // Save EN
-    fs.writeFileSync(path.join(blogsDir, 'en', `${slug}.md`), generateMarkdown(blogJson.en));
-
+    fs.writeFileSync(path.join(blogsDir, 'en', `${slug}.md`), generateMarkdown(blogJson.en, enAudioPath));
+    
     console.log(`Blog successfully generated: ${slug}`);
 
   } catch (error) {

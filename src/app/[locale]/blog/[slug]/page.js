@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
 import { getBlogPost, getBlogPosts, renderMarkdown } from '@/lib/blog';
+import PodcastPlayer from '@/components/PodcastPlayer';
 import styles from './BlogPost.module.css';
 
 export async function generateMetadata({ params }) {
@@ -71,6 +72,12 @@ function BlogPostContent({ post, htmlContent }) {
               <span key={tag} className="tag">{tag}</span>
             ))}
           </div>
+
+          {post.frontmatter.audio && (
+            <div className={styles.podcastWrapper}>
+              <PodcastPlayer audioUrl={post.frontmatter.audio} />
+            </div>
+          )}
         </header>
 
         <div

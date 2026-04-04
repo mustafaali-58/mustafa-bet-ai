@@ -1,9 +1,16 @@
 ---
-title: "Modern Web Geliştirmenin Temelleri"
-date: "2026-03-15"
-description: "Next.js, React ve modern CSS ile performanslı web uygulamaları geliştirmek için bilmeniz gerekenler."
-tags: ["Next.js", "React", "CSS", "Web"]
-author: "Mustafa Ali"
+title: Modern Web Geliştirmenin Temelleri
+date: '2026-03-15'
+description: >-
+  Next.js, React ve modern CSS ile performanslı web uygulamaları geliştirmek
+  için bilmeniz gerekenler.
+tags:
+  - Next.js
+  - React
+  - CSS
+  - Web
+author: Mustafa Ali
+audio: /audio/tr/modern-web-gelistirme.mp3
 ---
 
 ## Neden Modern Web Teknolojileri?

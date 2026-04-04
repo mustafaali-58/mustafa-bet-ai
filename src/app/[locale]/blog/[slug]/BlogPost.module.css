@@ -62,6 +62,11 @@
   margin-top: var(--space-md);
 }
 
+.podcastWrapper {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
 /* Content Styles */
 .content {
   font-size: var(--text-lg);

@@ -1,9 +1,19 @@
 ---
-title: "DeleteMe'nin Block Party'yi Stratejik Satın Alımı: Çevrimiçi Güvenlikte Yeni Bir Dönem"
+title: >-
+  DeleteMe'nin Block Party'yi Stratejik Satın Alımı: Çevrimiçi Güvenlikte Yeni
+  Bir Dönem
 date: 2026-03-25T17:07:00.212Z
-description: "DeleteMe'nin Block Party'yi satın almasının sosyal medya güvenliği ve kullanıcı emniyeti üzerindeki etkilerini inceliyoruz."
-tags: ["DeleteMe", "Block Party", "Sosyal Medya Güvenliği", "Tacizi Önleme", "Teknoloji Haberleri"]
+description: >-
+  DeleteMe'nin Block Party'yi satın almasının sosyal medya güvenliği ve
+  kullanıcı emniyeti üzerindeki etkilerini inceliyoruz.
+tags:
+  - DeleteMe
+  - Block Party
+  - Sosyal Medya Güvenliği
+  - Tacizi Önleme
+  - Teknoloji Haberleri
 image: null
+audio: /audio/tr/deleteme-acquires-social-media-security-tool-block-party.mp3
 ---
 # DeleteMe'nin Block Party'yi Stratejik Satın Alımı: Çevrimiçi Güvenlikte Yeni Bir Dönem
 

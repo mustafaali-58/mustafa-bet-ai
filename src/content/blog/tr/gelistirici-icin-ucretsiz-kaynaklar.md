@@ -1,9 +1,16 @@
 ---
-title: "Geliştiriciler İçin En İyi Ücretsiz Kaynaklar"
-date: "2026-03-20"
-description: "SaaS, PaaS ve IaaS dünyasında bütçenizi zorlamadan projelerinizi hayata geçirmenizi sağlayacak en iyi ücretsiz servisler."
-tags: ["Kaynaklar", "Geliştirici Araçları", "SaaS", "Ücretsiz"]
-author: "Mustafa Ali"
+title: Geliştiriciler İçin En İyi Ücretsiz Kaynaklar
+date: '2026-03-20'
+description: >-
+  SaaS, PaaS ve IaaS dünyasında bütçenizi zorlamadan projelerinizi hayata
+  geçirmenizi sağlayacak en iyi ücretsiz servisler.
+tags:
+  - Kaynaklar
+  - Geliştirici Araçları
+  - SaaS
+  - Ücretsiz
+author: Mustafa Ali
+audio: /audio/tr/gelistirici-icin-ucretsiz-kaynaklar.mp3
 ---
 
 ## Projelerinizi Sıfır Maliyetle Başlatın

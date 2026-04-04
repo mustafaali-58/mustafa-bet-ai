@@ -1,8 +1,15 @@
 ---
-title: "Veri Odaklı Karar Alma: Büyük Veriden Anlamlı İçgörülere"
-description: "Günümüz iş dünyasında verinin gücünü nasıl stratejik bir avantaja dönüştürebiliriz? Veri analitiğinin şirketlerdeki kritik rolü."
-date: "2026-03-19"
-tags: ["Veri Analitiği", "Raporlama", "İş Zekası", "Kariyer"]
+title: 'Veri Odaklı Karar Alma: Büyük Veriden Anlamlı İçgörülere'
+description: >-
+  Günümüz iş dünyasında verinin gücünü nasıl stratejik bir avantaja
+  dönüştürebiliriz? Veri analitiğinin şirketlerdeki kritik rolü.
+date: '2026-03-19'
+tags:
+  - Veri Analitiği
+  - Raporlama
+  - İş Zekası
+  - Kariyer
+audio: /audio/tr/data-driven-decision-making.mp3
 ---
 
 Modern endüstride ve kurumsal hayatta en sık duyduğumuz kelimelerden biri şüphesiz "Büyük Veri" (Big Data). Ancak asıl mesele veriyi sadece toplamak değil; onu işlemek, temizlemek ve şirket hedefleri doğrultusunda **anlamlı içgörülere (insights)** dönüştürebilmektir. 

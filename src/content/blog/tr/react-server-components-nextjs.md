@@ -1,8 +1,16 @@
 ---
-title: "React Server Components ve Next.js 16: Web Performansında Yeni Dönem"
-description: "Client-side rendering sınırlarını aşıp, React Server Components (RSC) ve Next.js App Router ile uygulamanızın hızını nasıl artırabileceğinizi inceleyelim."
-date: "2026-03-19"
-tags: ["Next.js", "React", "Performans", "Frontend"]
+title: 'React Server Components ve Next.js 16: Web Performansında Yeni Dönem'
+description: >-
+  Client-side rendering sınırlarını aşıp, React Server Components (RSC) ve
+  Next.js App Router ile uygulamanızın hızını nasıl artırabileceğinizi
+  inceleyelim.
+date: '2026-03-19'
+tags:
+  - Next.js
+  - React
+  - Performans
+  - Frontend
+audio: /audio/tr/react-server-components-nextjs.mp3
 ---
 
 Modern web geliştirme dünyasında front-end mimarileri sürekli evrim geçiriyor. Uzun bir süre boyunca Single Page Application (SPA) ve Client-Side Rendering (CSR) yaklaşımlarının konfor alanındaydık. Ancak performans gereksinimlerinin artması, bizi React Server Components (RSC) ve Next.js App Router kullanımına itti.
