@@ -1,9 +1,14 @@
 ---
-title: "Yapay Zeka ve Fintech'in Kesişim Noktası"
-date: "2026-03-10"
-description: "Finansal teknolojilerde yapay zekanın rolü ve gelecekte bizi bekleyenler."
-tags: ["AI", "Fintech", "Python", "Data Science"]
-author: "Mustafa Ali"
+title: Yapay Zeka ve Fintech'in Kesişim Noktası
+date: '2026-03-10'
+description: Finansal teknolojilerde yapay zekanın rolü ve gelecekte bizi bekleyenler.
+tags:
+  - AI
+  - Fintech
+  - Python
+  - Data Science
+author: Mustafa Ali
+audio: /audio/tr/yapay-zeka-fintech.mp3
 ---
 
 ## Fintech'te AI Devrimi
