@@ -1,9 +1,21 @@
 ---
- title: "The SEC Closes Its Four-Year Investigation into Faraday Future: A Forward-Looking Perspective"
- date: 2026-03-23T12:45:13.351Z
- description: "After a four-year SEC investigation, Faraday Future is free. This post evaluates the implications of this development for the company and the electric vehicle industry."
- tags: ["Faraday Future", "SEC", "Electric Vehicles", "Fintech", "Investment"]
- image: null
+title: >-
+  The SEC Closes Its Four-Year Investigation into Faraday Future: A
+  Forward-Looking Perspective
+date: 2026-03-23T12:45:13.351Z
+description: >-
+  After a four-year SEC investigation, Faraday Future is free. This post
+  evaluates the implications of this development for the company and the
+  electric vehicle industry.
+tags:
+  - Faraday Future
+  - SEC
+  - Electric Vehicles
+  - Fintech
+  - Investment
+image: null
+audio: >-
+  /audio/en/the-sec-drops-its-four-year-old-investigation-into-ev-startup-faraday-future.mp3
 ---
 # The SEC Closes Its Four-Year Investigation into Faraday Future: A Forward-Looking Perspective
 

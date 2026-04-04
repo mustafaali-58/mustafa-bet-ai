@@ -24,7 +24,7 @@ const cleanJsonResponse = (text) => {
 async function generateWithGemini(prompt) {
   if (!process.env.GEMINI_API_KEY) throw new Error('GEMINI_API_KEY missing');
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: 'models/gemini-1.5-flash' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
   const result = await model.generateContent(prompt);
   const response = await result.response;
   return cleanJsonResponse(response.text());
@@ -45,7 +45,7 @@ async function generateBlog() {
   try {
     console.log('Fetching latest tech news...');
     const feed = await parser.parseURL('https://techcrunch.com/feed/');
-    const latestNews = feed.items.slice(0, 5);
+    const latestNews = feed.items.slice(0, 20);
     const existingPosts = fs.readdirSync(path.join(blogsDir, 'tr')).map(f => f.replace('.md', ''));
     
     let targetNews = null;

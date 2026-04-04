@@ -1,9 +1,17 @@
 ---
-title: "Wikipedia Cracks Down on AI Article Writing"
+title: Wikipedia Cracks Down on AI Article Writing
 date: 2026-03-26T23:35:42.534Z
-description: "Wikipedia implements new restrictions on AI-generated content, a significant step towards maintaining quality in information-sharing platforms."
-tags: ["Wikipedia", "AI", "content management", "software", "fintech"]
+description: >-
+  Wikipedia implements new restrictions on AI-generated content, a significant
+  step towards maintaining quality in information-sharing platforms.
+tags:
+  - Wikipedia
+  - AI
+  - content management
+  - software
+  - fintech
 image: null
+audio: /audio/en/wikipedia-cracks-down-on-the-use-of-ai-in-article-writing.mp3
 ---
  # Wikipedia Cracks Down on AI Article Writing 
  In today's landscape, artificial intelligence is fundamentally altering the content creation process. However, platforms like Wikipedia are finding it essential to develop a distinct approach regarding AI-assisted writing. The recent decisions made by Wikipedia can be viewed as a response to the growing popularity of AI-generated content. 

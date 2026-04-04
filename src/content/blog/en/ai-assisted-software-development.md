@@ -1,9 +1,16 @@
 ---
-title: "AI-Assisted Software Development: A New Era"
-date: "2026-03-20"
-description: "An evaluation of the impact of artificial intelligence on software development processes, the role of LLMs, and what awaits us in the future."
-tags: ["Artificial Intelligence", "Software Development", "LLM", "Future"]
-author: "Mustafa Ali"
+title: 'AI-Assisted Software Development: A New Era'
+date: '2026-03-20'
+description: >-
+  An evaluation of the impact of artificial intelligence on software development
+  processes, the role of LLMs, and what awaits us in the future.
+tags:
+  - Artificial Intelligence
+  - Software Development
+  - LLM
+  - Future
+author: Mustafa Ali
+audio: /audio/en/ai-assisted-software-development.mp3
 ---
 
 ## The Evolution of Writing Code

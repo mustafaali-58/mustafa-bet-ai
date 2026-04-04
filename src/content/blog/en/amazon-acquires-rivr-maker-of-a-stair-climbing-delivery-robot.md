@@ -1,9 +1,18 @@
 ---
- title: "Amazon Acquires Rivr: A Strategic Move in Delivery Robotics"
- date: 2026-03-19T23:29:47.398Z
- description: "With the acquisition of Rivr, Amazon is taking a significant step in the realm of delivery robotics. This post explores the potential implications of this acquisition."
- tags: ["Amazon", "Rivr", "delivery robots", "acquisition", "automation"]
- image: null
+title: 'Amazon Acquires Rivr: A Strategic Move in Delivery Robotics'
+date: 2026-03-19T23:29:47.398Z
+description: >-
+  With the acquisition of Rivr, Amazon is taking a significant step in the realm
+  of delivery robotics. This post explores the potential implications of this
+  acquisition.
+tags:
+  - Amazon
+  - Rivr
+  - delivery robots
+  - acquisition
+  - automation
+image: null
+audio: /audio/en/amazon-acquires-rivr-maker-of-a-stair-climbing-delivery-robot.mp3
 ---
  # Amazon Acquires Rivr: A Strategic Move in Delivery Robotics
 

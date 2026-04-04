@@ -1,9 +1,16 @@
 ---
-title: "Hyper-Personalization in Fintech with AI"
-date: "2026-03-22"
-description: "How artificial intelligence is transforming the user experience in financial services and hyper-personalization strategies."
-tags: ["Fintech", "AI", "UX", "Personalization"]
-author: "Mustafa Ali"
+title: Hyper-Personalization in Fintech with AI
+date: '2026-03-22'
+description: >-
+  How artificial intelligence is transforming the user experience in financial
+  services and hyper-personalization strategies.
+tags:
+  - Fintech
+  - AI
+  - UX
+  - Personalization
+author: Mustafa Ali
+audio: /audio/en/hyper-personalization-fintech.mp3
 ---
 
 ## The Future of Financial Services: Specially for You

@@ -1,10 +1,22 @@
 ---
- title: "Deccan AI's $25M Investment and India-Centric Workforce: The Future of AI Training" 
- date: 2026-03-26T02:32:59.775Z
- description: "Deccan AI has secured a $25M investment, focusing on an India-based workforce to manage quality in the fragmented AI training market." 
- tags: ["AI", "Fintech", "Deccan AI", "India", "Training"] 
- image: null 
---- 
+title: >-
+  Deccan AI's $25M Investment and India-Centric Workforce: The Future of AI
+  Training
+date: 2026-03-26T02:32:59.775Z
+description: >-
+  Deccan AI has secured a $25M investment, focusing on an India-based workforce
+  to manage quality in the fragmented AI training market.
+tags:
+  - AI
+  - Fintech
+  - Deccan AI
+  - India
+  - Training
+image: null
+audio: >-
+  /audio/en/mercor-competitor-deccan-ai-raises-dollar25m-sources-experts-from-india.mp3
+---
+ 
  # Deccan AI's $25M Investment and India-Centric Workforce: The Future of AI Training 
  Recent developments in the AI sector have brought significant attention. Deccan AI has raised a notable $25 million investment, leveraging an India-focused workforce to address quality challenges in the increasingly fragmented AI training market. This move is a critical step in ensuring that the quality and resources required for AI education are available to meet growing demands. 
  

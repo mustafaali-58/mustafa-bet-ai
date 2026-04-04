@@ -1,10 +1,19 @@
 ---
- title: 'The AI Skills Gap: Future Workforce Disparities' 
- date: 2026-03-25T23:00:15.201Z
- description: 'AI may not be replacing jobs yet, but the growing advantage of experienced users raises concerns about workforce inequalities.' 
- tags: ['AI', 'Workforce', 'Fintech', 'Skills Gap'] 
- image: null 
---- 
+title: 'The AI Skills Gap: Future Workforce Disparities'
+date: 2026-03-25T23:00:15.201Z
+description: >-
+  AI may not be replacing jobs yet, but the growing advantage of experienced
+  users raises concerns about workforce inequalities.
+tags:
+  - AI
+  - Workforce
+  - Fintech
+  - Skills Gap
+image: null
+audio: >-
+  /audio/en/the-ai-skills-gap-is-here-says-ai-company-and-power-users-are-pulling-ahead.mp3
+---
+ 
  # The AI Skills Gap: Future Workforce Disparities 
  Recently, a particularly noteworthy development in the realm of artificial intelligence has surfaced: the clear divide between experienced users and novices. According to a report by Anthropic, while AI technologies have not yet directly adversely affected employment, it has become apparent that seasoned users are rapidly gaining an advantage in this field. This situation raises some concerns about how AI might influence employment in the future. 
  

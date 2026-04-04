@@ -1,9 +1,17 @@
 ---
- title: "DeleteMe's Strategic Acquisition of Block Party: A New Era for Online Safety"
- date: 2026-03-25T17:07:00.212Z
- description: "Exploring the implications of DeleteMe's acquisition of Block Party for social media security and user safety."
- tags: ["DeleteMe", "Block Party", "Social Media Security", "Harassment Prevention", "Tech News"]
- image: null
+title: 'DeleteMe''s Strategic Acquisition of Block Party: A New Era for Online Safety'
+date: 2026-03-25T17:07:00.212Z
+description: >-
+  Exploring the implications of DeleteMe's acquisition of Block Party for social
+  media security and user safety.
+tags:
+  - DeleteMe
+  - Block Party
+  - Social Media Security
+  - Harassment Prevention
+  - Tech News
+image: null
+audio: /audio/en/deleteme-acquires-social-media-security-tool-block-party.mp3
 ---
 # DeleteMe's Strategic Acquisition of Block Party: A New Era for Online Safety
 In a significant move within the tech industry, DeleteMe has recently acquired Block Party, a social media security tool designed to protect users from targeted harassment. Founded by Tracey Chou in 2018, Block Party emerged from the need for a robust defense against the rampant online harassment many individuals face, particularly on platforms like Twitter. Chou's personal experiences with harassment fueled her passion for creating a safer digital environment, and her platform has since empowered countless users to take control of their online presence.

@@ -1,9 +1,16 @@
 ---
-title: "Fundamentals of Modern Web Development"
-date: "2026-03-15"
-description: "Everything you need to know about building performant web applications with Next.js, React, and modern CSS."
-tags: ["Next.js", "React", "CSS", "Web"]
-author: "Mustafa Ali"
+title: Fundamentals of Modern Web Development
+date: '2026-03-15'
+description: >-
+  Everything you need to know about building performant web applications with
+  Next.js, React, and modern CSS.
+tags:
+  - Next.js
+  - React
+  - CSS
+  - Web
+author: Mustafa Ali
+audio: /audio/en/modern-web-development.mp3
 ---
 
 ## Why Modern Web Technologies?

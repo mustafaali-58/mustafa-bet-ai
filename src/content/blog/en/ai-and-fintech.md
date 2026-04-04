@@ -1,9 +1,16 @@
 ---
-title: "The Intersection of AI and Fintech"
-date: "2026-03-10"
-description: "The role of artificial intelligence in financial technologies and what the future holds."
-tags: ["AI", "Fintech", "Python", "Data Science"]
-author: "Mustafa Ali"
+title: The Intersection of AI and Fintech
+date: '2026-03-10'
+description: >-
+  The role of artificial intelligence in financial technologies and what the
+  future holds.
+tags:
+  - AI
+  - Fintech
+  - Python
+  - Data Science
+author: Mustafa Ali
+audio: /audio/en/ai-and-fintech.mp3
 ---
 
 ## The AI Revolution in Fintech

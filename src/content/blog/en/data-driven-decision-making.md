@@ -1,8 +1,15 @@
 ---
-title: "Data-Driven Decision Making: From Big Data to Meaningful Insights"
-description: "How can we turn the power of data into a strategic advantage in today's business world? The critical role of data analytics in companies."
-date: "2026-03-19"
-tags: ["Data Analytics", "Reporting", "Business Intelligence", "Career"]
+title: 'Data-Driven Decision Making: From Big Data to Meaningful Insights'
+description: >-
+  How can we turn the power of data into a strategic advantage in today's
+  business world? The critical role of data analytics in companies.
+date: '2026-03-19'
+tags:
+  - Data Analytics
+  - Reporting
+  - Business Intelligence
+  - Career
+audio: /audio/en/data-driven-decision-making.mp3
 ---
 
 One of the most frequently heard buzzwords in modern industry and corporate life is undoubtedly "Big Data". However, the real challenge is not just collecting data; it's about processing, cleaning, and transforming it into **meaningful insights** aligned with company goals.

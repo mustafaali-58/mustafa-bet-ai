@@ -32,8 +32,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/content/blog/
-          git commit -m "chore: automated ai blog post" || echo "No changes to commit"
+          git add src/content/blog/ public/audio/
+          git commit -m "chore: automated ai blog post with audio" || echo "No changes to commit"
           git push
 
       - name: Deploy to Vercel

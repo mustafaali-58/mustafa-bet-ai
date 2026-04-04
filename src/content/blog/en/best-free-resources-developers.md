@@ -1,9 +1,16 @@
 ---
-title: "The Best Free Resources for Developers"
-date: "2026-03-20"
-description: "The best free services in the world of SaaS, PaaS, and IaaS to help you bring your projects to life without breaking your budget."
-tags: ["Resources", "Developer Tools", "SaaS", "Free"]
-author: "Mustafa Ali"
+title: The Best Free Resources for Developers
+date: '2026-03-20'
+description: >-
+  The best free services in the world of SaaS, PaaS, and IaaS to help you bring
+  your projects to life without breaking your budget.
+tags:
+  - Resources
+  - Developer Tools
+  - SaaS
+  - Free
+author: Mustafa Ali
+audio: /audio/en/best-free-resources-developers.mp3
 ---
 
 ## Start Your Projects with Zero Cost
