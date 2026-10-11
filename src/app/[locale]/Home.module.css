@@ -1,166 +1,186 @@
-/* ===== HOME PAGE ===== */
-
+/* Açılış: gri bant üzerinde beyaz bir pafta. Paftanın içinde çizim çerçevesi,
+   çerçevenin sağ alt köşesinde antet (teknik resimlerdeki başlık bloğu). */
 .hero {
-  min-height: calc(100vh - var(--header-height));
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
+  padding-block: var(--sp-6) var(--sp-7);
+  background: var(--bg-band);
+  border-bottom: 1px solid var(--line);
 }
 
-.auroraOrbs {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
+.sheet {
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.3;
-  animation: float 8s ease-in-out infinite;
+.frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 27rem);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'heading heading'
+    'intro antet';
+  min-height: 27rem;
+  border: 1px solid var(--line-strong);
 }
 
-.orb1 {
-  width: 400px;
-  height: 400px;
-  background: var(--color-accent-cyan);
-  top: 10%;
-  right: -5%;
-  animation-delay: 0s;
+.heading {
+  grid-area: heading;
+  padding: var(--sp-7) var(--sp-7) 0;
 }
 
-.orb2 {
-  width: 350px;
-  height: 350px;
-  background: var(--color-accent-purple);
-  bottom: 10%;
-  left: -5%;
-  animation-delay: 2s;
-}
-
-.orb3 {
-  width: 300px;
-  height: 300px;
-  background: var(--color-accent-pink);
-  top: 50%;
-  left: 40%;
-  animation-delay: 4s;
-}
-
-.heroContent {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-}
-
-.greeting {
-  font-size: var(--text-lg);
-  color: var(--color-accent-cyan-text);
-  font-weight: 500;
-  font-family: var(--font-mono);
-  margin-bottom: var(--space-sm);
-}
-
-.heroName {
-  font-size: var(--text-6xl);
-  font-weight: 900;
-  letter-spacing: -0.04em;
+.name {
+  font-size: clamp(2.75rem, 7.4vw, 5.5rem);
   line-height: 1;
-  margin-bottom: var(--space-md);
+  letter-spacing: -0.005em;
 }
 
-.heroDot {
-  background: var(--gradient-aurora);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.heroTitle {
-  font-size: var(--text-xl);
-  color: var(--color-text-muted);
+.role {
+  margin-top: var(--sp-3);
+  color: var(--ink-muted);
+  font-size: clamp(1.125rem, 2.2vw, 1.5rem);
   font-weight: 500;
-  margin-bottom: var(--space-lg);
+  line-height: 1.3;
 }
 
-.heroDesc {
-  font-size: var(--text-lg);
-  color: var(--color-text-muted);
-  max-width: 550px;
-  line-height: 1.7;
-  margin-bottom: var(--space-xl);
+.intro {
+  grid-area: intro;
+  align-self: end;
+  max-width: 36rem;
+  padding: var(--sp-6) var(--sp-7) var(--sp-7);
 }
 
-.heroCta {
+.summary {
+  color: var(--ink-muted);
+  font-size: var(--fs-lg);
+  line-height: 1.5;
+}
+
+.cta {
   display: flex;
-  gap: var(--space-md);
   flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
 }
 
-/* Sections */
-.featuredSection {
-  background: var(--color-bg-alt);
-}
-
-.sectionHeader {
-  margin-bottom: var(--space-2xl);
-}
-
-.projectsGrid {
+/* Antet: çerçevenin çizgilerini paylaşan, hücreli bilgi tablosu. Her hücrede
+   küçük bir alan adı ve altında değeri bulunur. */
+.antet {
+  grid-area: antet;
+  align-self: end;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
+  grid-template-columns: minmax(0, 1fr) auto;
+  border-top: 1px solid var(--line-strong);
+  border-left: 1px solid var(--line-strong);
 }
 
-.postsGrid {
+.cell,
+.cellWide {
+  padding: 0.625rem 0.875rem 0.75rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.cellWide {
+  grid-column: 1 / -1;
+}
+
+.cell + .cell {
+  border-left: 1px solid var(--line-strong);
+}
+
+.antet > :last-child {
+  border-bottom: 0;
+}
+
+.antet dt {
+  color: var(--ink-faint);
+  font-size: var(--fs-xs);
+  line-height: 1.3;
+}
+
+.antet dd {
+  margin-top: 0.125rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.cell + .cell dd {
+  white-space: nowrap;
+}
+
+/* Projeler: görseli olan nesneler kart olarak dizilir. */
+.projects {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-5);
+  margin-top: var(--sp-5);
 }
 
-.viewAll {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--space-2xl);
+/* Yazılar bölümü, üstündeki bölümün alt boşluğunu paylaştığı için yalnızca
+   alt boşluk taşır. */
+.posts {
+  padding-bottom: var(--sp-8);
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .projectsGrid,
-  .postsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .heroName {
-    font-size: var(--text-4xl);
+@media (max-width: 900px) {
+  .frame {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'heading'
+      'intro'
+      'antet';
+    min-height: 0;
   }
 
-  .heroDesc {
-    font-size: var(--text-base);
+  .heading {
+    padding: var(--sp-6) var(--sp-5) 0;
   }
 
-  .orb1 { width: 250px; height: 250px; }
-  .orb2 { width: 200px; height: 200px; }
-  .orb3 { width: 180px; height: 180px; }
+  .intro {
+    padding: var(--sp-5) var(--sp-5) var(--sp-6);
+  }
+
+  .antet {
+    border-left: 0;
+  }
+
+  .projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
-  .projectsGrid,
-  .postsGrid {
-    grid-template-columns: 1fr;
+  .hero {
+    padding-block: var(--sp-4) var(--sp-6);
   }
 
-  .heroName {
-    font-size: var(--text-3xl);
+  .sheet {
+    padding: 0.5rem;
   }
 
-  .heroCta {
+  .projects {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Dar ekranda görev ve dönem hücreleri alt alta gelir. */
+  .cell {
+    grid-column: 1 / -1;
+  }
+
+  .cell + .cell {
+    border-left: 0;
+  }
+
+  .posts {
+    padding-bottom: var(--sp-7);
+  }
+}
+
+/* Telefonda iki düğme yan yana sığmaz; yazı tipine göre bir sığıp bir
+   sığmamasın diye alt alta ve tam genişlikte dizilir. */
+@media (max-width: 480px) {
+  .cta {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
 }

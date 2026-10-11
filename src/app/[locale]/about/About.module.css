@@ -1,177 +1,133 @@
-.page {
-  min-height: 100vh;
+/* Hakkımda: özgeçmiş düzeni. Bölüm adı solda, içerik sağda. */
+.body {
+  padding-block: var(--sp-7) var(--sp-8);
 }
 
-.heroSection {
-  padding-bottom: var(--space-xl);
-}
-
-.title {
-  font-size: var(--text-4xl);
-}
-
-.subtitle {
-  margin-top: var(--space-sm);
-}
-
-/* Bio */
-.bioGrid {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: var(--space-2xl);
-  align-items: center;
-}
-
-.avatarPlaceholder {
-  width: 200px;
-  height: 200px;
-  border-radius: var(--radius-xl);
-  background: var(--gradient-aurora-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--color-border);
-}
-
-.avatarPlaceholder span {
-  font-size: var(--text-4xl);
-  font-weight: 800;
-  background: var(--gradient-aurora);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.bioText {
-  font-size: var(--text-lg);
-  color: var(--color-text-muted);
-  line-height: 1.8;
-}
-
-/* Skills */
-.skillsSection {
-  background: var(--color-bg-alt);
-}
-
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg);
-  margin-top: var(--space-xl);
-}
-
-.skillItem {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.skillHeader {
-  display: flex;
-  justify-content: space-between;
-  font-size: var(--text-sm);
-}
-
-.skillName {
-  font-weight: 600;
-  color: var(--color-heading);
-}
-
-.skillLevel {
-  color: var(--color-accent-cyan-text);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-}
-
-.skillBar {
-  height: 6px;
-  background: var(--color-surface);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.skillFill {
-  height: 100%;
-  background: var(--gradient-aurora);
-  border-radius: var(--radius-full);
-  animation: skillGrow 1s ease forwards;
-  transform-origin: left;
-}
-
-@keyframes skillGrow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-/* Experience */
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-  margin-top: var(--space-xl);
-  position: relative;
-  padding-left: var(--space-xl);
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--gradient-aurora);
-  opacity: 0.3;
-}
-
-.timelineItem {
-  padding: var(--space-lg);
-  position: relative;
-}
-
-.timelineDot {
-  position: absolute;
-  left: calc(-1 * var(--space-xl) + 2px);
-  top: var(--space-lg);
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--gradient-aurora);
-  border: 3px solid var(--color-bg);
-}
-
-.period {
-  font-size: var(--text-xs);
-  color: var(--color-accent-cyan-text);
-  font-family: var(--font-mono);
-}
-
-.expTitle {
-  font-size: var(--text-xl);
-  margin-top: var(--space-xs);
-}
-
-.company {
-  color: var(--color-accent-purple-text);
-  font-size: var(--text-sm);
-  font-weight: 500;
-}
-
-.expDesc {
-  color: var(--color-text-muted);
-  font-size: var(--text-sm);
-  margin-top: var(--space-sm);
+.bio {
+  max-width: var(--measure);
+  font-size: var(--fs-lg);
   line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-  .bioGrid {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
+.block {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: var(--sp-4) var(--sp-6);
+  margin-top: var(--sp-7);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--line);
+}
+
+.blockTitle {
+  font-size: var(--fs-xl);
+}
+
+/* Yetenekler: ad, değer ve değeri gösteren ince bir çubuk. Çubuk nötr renkte;
+   vurgu rengi yalnızca tıklanabilir öğelere ayrılmıştır. */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-5) var(--sp-7);
+}
+
+.skill {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--sp-2) var(--sp-4);
+  align-items: baseline;
+}
+
+.skillName {
+  font-weight: 500;
+}
+
+.skillValue {
+  color: var(--ink-muted);
+  font-size: var(--fs-sm);
+}
+
+.skillBar {
+  grid-column: 1 / -1;
+  display: block;
+  height: 4px;
+  background: var(--line);
+}
+
+.skillFill {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+}
+
+/* Zaman çizelgesi: dönem sütunu ve içerik sütunu, satırlar çizgiyle ayrılır. */
+.timeline {
+  display: grid;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: var(--sp-1) var(--sp-5);
+  padding-block: var(--sp-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.entry:first-child {
+  padding-top: 0;
+}
+
+.entry:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.period {
+  padding-top: 0.15rem;
+  color: var(--ink-faint);
+  font-size: var(--fs-sm);
+}
+
+.entryTitle {
+  font-size: 1.1875rem;
+  font-stretch: 100%;
+  line-height: 1.35;
+}
+
+.organization {
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.entryText {
+  margin-top: var(--sp-1);
+  color: var(--ink-muted);
+  font-size: var(--fs-sm);
+}
+
+@media (max-width: 820px) {
+  .block {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .skillsGrid {
-    grid-template-columns: 1fr;
+  .skills {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .body {
+    padding-block: var(--sp-6) var(--sp-7);
+  }
+
+  .bio {
+    font-size: var(--fs-base);
+  }
+
+  .entry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .period {
+    padding-top: 0;
   }
 }

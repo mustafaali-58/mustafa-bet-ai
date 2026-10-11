@@ -1,5 +1,7 @@
-import '@fontsource-variable/inter';
-import '@fontsource-variable/jetbrains-mono';
+// Yazı tipi siteyle birlikte sunulur. `wdth` dosyası hem kalınlık hem genişlik
+// eksenini taşır; başlıklar aynı ailenin dar kesimiyle dizilir.
+import '@fontsource-variable/ibm-plex-sans/wdth.css';
+import '@fontsource-variable/ibm-plex-sans/wght-italic.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -10,8 +12,8 @@ import ChatBot from '@/components/ChatBot';
 import { Analytics } from '@vercel/analytics/next';
 import { SITE_NAME, SITE_URL, buildMetadata } from '@/lib/seo';
 
-// Kayıtlı tema tercihini sayfa çizilmeden önce uygular; böylece açık temayı
-// seçen ziyaretçi her açılışta kısa bir koyu ekran görmez.
+// Ziyaretçi bir tema seçtiyse sayfa çizilmeden önce uygulanır. Seçim yoksa
+// öznitelik eklenmez ve CSS cihazın açık/koyu ayarını izler.
 const THEME_SCRIPT = `try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}`;
 
 export function generateStaticParams() {
@@ -37,6 +39,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#1b222b' },
+  ],
+};
+
 export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
 
@@ -48,10 +59,8 @@ export default async function LocaleLayout({ children, params }) {
   const t = await getTranslations({ locale, namespace: 'a11y' });
 
   return (
-    <html lang={locale} data-theme="dark" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
         <link
           rel="alternate"
           type="application/rss+xml"
@@ -64,9 +73,7 @@ export default async function LocaleLayout({ children, params }) {
         <a href="#main" className="skip-link">{t('skip')}</a>
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <main id="main" style={{ paddingTop: 'var(--header-height)' }}>
-            {children}
-          </main>
+          <main id="main">{children}</main>
           <Footer />
           <ChatBot />
         </NextIntlClientProvider>

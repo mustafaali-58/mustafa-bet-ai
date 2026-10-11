@@ -11,36 +11,36 @@ export default function ProjectsContent() {
   const locale = useLocale();
   const [activeCategory, setActiveCategory] = useState('all');
 
+  // Hiç projesi olmayan kategoriler filtrede gösterilmez.
+  const usedCategories = categories.filter(
+    cat => cat.id === 'all' || projects.some(p => p.category === cat.id)
+  );
+
   const filtered = activeCategory === 'all'
     ? projects
     : projects.filter(p => p.category === activeCategory);
 
   return (
-    <div className={styles.page}>
-      <section className="section">
-        <div className="container">
-          <h1 className="section-title">{t('title')}</h1>
-          <p className="section-subtitle">{t('subtitle')}</p>
+    <div className={`container ${styles.body}`}>
+      <div className={styles.filters} role="group" aria-label={t('title')}>
+        {usedCategories.map(cat => (
+          <button
+            key={cat.id}
+            type="button"
+            className={`${styles.filter} ${activeCategory === cat.id ? styles.filterActive : ''}`}
+            aria-pressed={activeCategory === cat.id}
+            onClick={() => setActiveCategory(cat.id)}
+          >
+            {cat.label[locale]}
+          </button>
+        ))}
+      </div>
 
-          <div className={styles.filters}>
-            {categories.map(cat => (
-              <button
-                key={cat.id}
-                className={`${styles.filterBtn} ${activeCategory === cat.id ? styles.filterActive : ''}`}
-                onClick={() => setActiveCategory(cat.id)}
-              >
-                {cat.label[locale]}
-              </button>
-            ))}
-          </div>
-
-          <div className={styles.grid}>
-            {filtered.map(project => (
-              <ProjectCard key={project.id} project={project} viewText={t('view_project')} headingLevel={2} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className={styles.grid}>
+        {filtered.map(project => (
+          <ProjectCard key={project.id} project={project} viewText={t('view_project')} headingLevel={2} />
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,29 @@
+.body {
+  padding-block: var(--sp-9);
+}
+
+.code {
+  color: var(--ink-faint);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.title {
+  margin-top: var(--sp-2);
+  font-size: clamp(2.125rem, 5vw, var(--fs-3xl));
+  line-height: 1.1;
+}
+
+.text {
+  max-width: 34rem;
+  margin-top: var(--sp-3);
+  color: var(--ink-muted);
+  font-size: var(--fs-lg);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}

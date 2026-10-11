@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { projects } from '@/data/projects';
 import { Link } from '@/i18n/navigation';
+import ExternalIcon from '@/components/ExternalIcon';
 import { buildMetadata } from '@/lib/seo';
 import styles from './ProjectDetail.module.css';
 
@@ -36,68 +37,78 @@ export default async function ProjectDetailPage({ params }) {
 
   if (!project) notFound();
 
-  return <ProjectDetailContent project={project} locale={locale} />;
-}
-
-function ProjectDetailContent({ project, locale }) {
-  const t = useTranslations('projects');
+  const t = await getTranslations({ locale, namespace: 'projects' });
+  const tA11y = await getTranslations({ locale, namespace: 'a11y' });
+  const title = project.title[locale];
 
   return (
-    <div className={styles.page}>
-      <article className="container">
-        <Link href="/projects" className={styles.backLink}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
-          </svg>
-          {t('back_to_projects')}
-        </Link>
+    <article className={`container ${styles.article}`}>
+      <Link href="/projects" className={styles.back}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        {t('back_to_projects')}
+      </Link>
 
-        <header className={styles.header}>
-          <h1 className={styles.title}>{project.title[locale]}</h1>
-          <div className={styles.tags}>
-            {project.tags.map(tag => (
-              <span key={tag} className="tag">{tag}</span>
-            ))}
-          </div>
-        </header>
+      <header className={styles.header}>
+        <h1 className={styles.title}>{title}</h1>
+        <ul className={styles.tags}>
+          {project.tags.map(tag => (
+            <li key={tag} className="tag">{tag}</li>
+          ))}
+        </ul>
+      </header>
 
-        <div className={styles.heroImage}>
+      <div className={styles.layout}>
+        <div className={styles.media}>
           {project.image ? (
             <Image
               src={project.image}
-              alt={project.title[locale]}
+              alt={title}
               width={640}
               height={640}
-              sizes="(max-width: 1200px) 100vw, 1150px"
+              sizes="(max-width: 900px) 100vw, 640px"
               preload
             />
           ) : (
-            <div className={styles.placeholder}>{project.title[locale]?.[0]}</div>
+            <div className={styles.placeholder}>{title?.[0]}</div>
           )}
         </div>
 
-        <div className={styles.content}>
-          <div className={styles.mainInfo}>
-            <section className={styles.descriptionSection}>
-              <h2>{t('description_title')}</h2>
-              <p>{project.description[locale]}</p>
-            </section>
-            
+        <div>
+          <h2 className={styles.infoTitle}>{t('description_title')}</h2>
+          <p className={styles.description}>{project.description[locale]}</p>
+
+          {(project.liveUrl || project.githubUrl) && (
             <div className={styles.actions}>
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                  aria-label={`${t('view_live_demo')} (${tA11y('external')})`}
+                >
                   {t('view_live_demo')}
+                  <ExternalIcon />
                 </a>
               )}
               {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline"
+                  aria-label={`${t('view_on_github')} (${tA11y('external')})`}
+                >
                   {t('view_on_github')}
+                  <ExternalIcon />
                 </a>
               )}
             </div>
-          </div>
+          )}
         </div>
-      </article>
-    </div>
+      </div>
+    </article>
   );
 }

@@ -9,11 +9,15 @@
   },
   "hero": {
     "greeting": "Merhaba, ben",
-    "name": "Mustafa Ali",
+    "name": "Mustafa Ali Solmazgül",
     "title": "Veri Analisti & Teknoloji Uzmanı",
     "description": "Veri analitiği ve bilgisayar sistemleri altyapıları ile şirket süreçlerine değer katıyorum.",
     "cta_projects": "Projelerimi Gör",
-    "cta_contact": "İletişime Geç"
+    "cta_contact": "İletişime Geç",
+    "fact_organization": "Kurum",
+    "fact_role": "Görev",
+    "fact_period": "Dönem",
+    "fact_education": "Eğitim"
   },
   "home": {
     "featured_projects": "Öne Çıkan Projeler",
@@ -63,14 +67,14 @@
     "share": "Paylaş",
     "published": "Yayınlanma",
     "search_label": "Yazılarda ara",
-    "load_more": "Daha fazla göster",
-    "all_tags": "Tüm etiketler",
-    "fewer_tags": "Daha az etiket",
+    "load_more": "Daha Fazla Göster",
+    "all_tags": "Tüm Etiketler",
+    "fewer_tags": "Daha Az Etiket",
     "news_badge": "Haber özeti",
     "news_disclosure": "Bu yazı, teknoloji haberlerinden yapay zekâ yardımıyla hazırlanmış bir özettir.",
     "news_disclosure_source": "Bu yazı, {source} haberinden yapay zekâ yardımıyla hazırlanmış bir özettir.",
-    "read_original": "Haberin aslını oku",
-    "related": "İlgili yazılar"
+    "read_original": "Haberin Aslını Oku",
+    "related": "İlgili Yazılar"
   },
   "newsletter": {
     "title": "Bültenimize Abone Olun",
@@ -93,7 +97,7 @@
     "error": "Bir hata oluştu. Lütfen tekrar deneyin.",
     "or_reach": "Ya da doğrudan ulaşın",
     "error_rate": "Çok fazla deneme yaptınız. Lütfen daha sonra tekrar deneyin.",
-    "error_fallback": "Mesaj şu anda gönderilemiyor. Lütfen yandaki bağlantılardan doğrudan ulaşın.",
+    "error_fallback": "Mesaj şu anda gönderilemiyor. Lütfen bu sayfadaki bağlantılardan doğrudan ulaşın.",
     "error_invalid": "Lütfen adınızı, geçerli bir e-posta adresini ve en az 10 karakterlik bir mesaj girin."
   },
   "footer": {
@@ -115,7 +119,7 @@
     "open": "AI asistanı aç",
     "close": "Sohbeti kapat",
     "send": "Mesajı gönder",
-    "welcome": "👋 Merhaba! Mustafa Ali hakkında sorularınızı yanıtlayabilirim.",
+    "welcome": "Merhaba! Mustafa Ali hakkında sorularınızı yanıtlayabilirim.",
     "suggestion_1": "Mustafa Ali kimdir?",
     "suggestion_2": "Hangi projeleri var?",
     "suggestion_3": "Deneyimi nedir?",
@@ -128,6 +132,14 @@
     "skip": "İçeriğe geç",
     "toggle_theme": "Temayı değiştir",
     "toggle_menu": "Menüyü aç veya kapat",
-    "switch_language": "Dili değiştir"
+    "switch_language": "Dili değiştir",
+    "main_nav": "Ana menü",
+    "external": "yeni sekmede açılır"
+  },
+  "not_found": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Aradığınız sayfa taşınmış ya da kaldırılmış olabilir.",
+    "home": "Ana Sayfaya Dön",
+    "blog": "Yazılara Göz At"
   }
 }

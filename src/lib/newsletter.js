@@ -89,15 +89,15 @@ export function buildConfirmEmail(locale, confirmUrl) {
     subject: copy.subject,
     text: `${copy.heading}\n\n${copy.body}\n\n${confirmUrl}\n\n${copy.ignore}\n\n${copy.signoff},\nMustafa Ali Solmazgül`,
     html: `
-      <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h2 style="color: #6366f1;">${copy.heading}</h2>
+      <div style="font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; color: #1a222d; max-width: 600px; margin: 0 auto; padding: 24px; line-height: 1.6;">
+        <h2 style="margin: 0 0 12px; color: #1a222d; font-size: 22px;">${copy.heading}</h2>
         <p>${copy.body}</p>
         <p style="margin: 28px 0;">
-          <a href="${confirmUrl}" style="background: #6366f1; color: #fff; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600;">${copy.button}</a>
+          <a href="${confirmUrl}" style="background: #2f3e9e; color: #ffffff; padding: 12px 22px; border-radius: 4px; text-decoration: none; font-weight: 600;">${copy.button}</a>
         </p>
-        <p style="font-size: 13px; color: #666;">${copy.ignore}</p>
+        <p style="font-size: 13px; color: #4f5b6b;">${copy.ignore}</p>
         <br/>
-        <p>${copy.signoff},<br/><strong>Mustafa Ali Solmazgül</strong><br/><a href="${SITE_URL}" style="color: #8b5cf6; text-decoration: none;">${SITE_URL.replace(/^https?:\/\//, '')}</a></p>
+        <p>${copy.signoff},<br/><strong>Mustafa Ali Solmazgül</strong><br/><a href="${SITE_URL}" style="color: #2f3e9e;">${SITE_URL.replace(/^https?:\/\//, '')}</a></p>
       </div>
     `
   };
@@ -105,7 +105,7 @@ export function buildConfirmEmail(locale, confirmUrl) {
 
 const PAGE_COPY = {
   tr: {
-    okTitle: 'Aboneliğiniz onaylandı 🎉',
+    okTitle: 'Aboneliğiniz onaylandı',
     okBody: 'Bültenime hoş geldiniz. Yeni yazılar ve güncellemeler artık e-postanıza gelecek.',
     badTitle: 'Bağlantı geçersiz',
     badBody: 'Onay bağlantısı hatalı ya da süresi dolmuş. Lütfen siteden yeniden abone olun.',
@@ -114,7 +114,7 @@ const PAGE_COPY = {
     back: 'Siteye dön'
   },
   en: {
-    okTitle: 'Subscription confirmed 🎉',
+    okTitle: 'Subscription confirmed',
     okBody: 'Welcome to my newsletter. New posts and updates will now arrive in your inbox.',
     badTitle: 'Invalid link',
     badBody: 'The confirmation link is invalid or has expired. Please subscribe again from the site.',
@@ -139,11 +139,18 @@ export function buildResultPage(locale, kind) {
 <meta name="robots" content="noindex">
 <title>${title}</title>
 <style>
-  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #0b0f1a; color: #e5e7eb; font-family: system-ui, sans-serif; }
-  main { max-width: 440px; padding: 32px 24px; text-align: center; }
-  h1 { font-size: 1.5rem; margin: 0 0 12px; }
-  p { line-height: 1.6; color: #9ca3af; margin: 0 0 28px; }
-  a { display: inline-block; background: #6366f1; color: #fff; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+  :root { color-scheme: light dark; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f2f4f7; color: #1a222d; font-family: -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+  main { max-width: 30rem; margin: 16px; padding: 32px; background: #ffffff; border: 1px solid #d4dae2; }
+  h1 { margin: 0 0 12px; font-size: 1.625rem; line-height: 1.2; }
+  p { margin: 0 0 24px; line-height: 1.6; color: #4f5b6b; }
+  a { display: inline-block; padding: 12px 20px; border-radius: 4px; background: #2f3e9e; color: #ffffff; font-weight: 600; text-decoration: none; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #161c24; color: #e7ebf0; }
+    main { background: #222a35; border-color: #364252; }
+    p { color: #a9b3c0; }
+    a { background: #a3b1f7; color: #141a22; }
+  }
 </style>
 </head>
 <body>
