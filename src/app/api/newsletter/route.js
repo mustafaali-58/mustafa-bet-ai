@@ -1,79 +1,78 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { Resend } from 'resend';
+import { getClientIp, rateLimit } from '@/lib/rate-limit';
+import {
+  FROM_ADDRESS,
+  SITE_URL,
+  buildConfirmEmail,
+  createConfirmToken,
+  normalizeEmail,
+  normalizeLocale
+} from '@/lib/newsletter';
 
-const SUBSCRIBERS_FILE = path.join(process.cwd(), 'src/data/subscribers.json');
-const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy');
+// IP başına saatte 5 istek; aynı adrese 10 dakikada en fazla 1 onay e-postası.
+const PER_IP = { limit: 5, windowMs: 60 * 60_000 };
+const PER_EMAIL = { limit: 1, windowMs: 10 * 60_000 };
 
-function getSubscribers() {
-  try {
-    if (fs.existsSync(SUBSCRIBERS_FILE)) {
-      return JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, 'utf-8'));
-    }
-  } catch {}
-  return [];
-}
-
-function saveSubscribers(subscribers) {
-  const dir = path.dirname(SUBSCRIBERS_FILE);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2));
-}
-
+// Çift onaylı abonelik: bu uç nokta yalnızca onay e-postası gönderir. Adres,
+// kişi bağlantıya tıkladığında /api/newsletter/confirm içinde listeye eklenir.
 export async function POST(request) {
+  const ip = getClientIp(request);
+  const ipLimit = rateLimit(`newsletter:ip:${ip}`, PER_IP.limit, PER_IP.windowMs);
+  if (!ipLimit.ok) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429, headers: { 'Retry-After': String(ipLimit.retryAfter) } }
+    );
+  }
+
+  let body;
   try {
-    const { email } = await request.json();
-    
-    if (!email || !email.includes('@')) {
-      return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
-    }
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
 
-    const subscribers = getSubscribers();
-    
-    if (subscribers.some(s => s.email === email)) {
-      return NextResponse.json({ message: 'Already subscribed' }, { status: 200 });
-    }
+  const email = normalizeEmail(body?.email);
+  if (!email) {
+    return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
+  }
+  const locale = normalizeLocale(body?.locale);
 
-    subscribers.push({
-      email,
-      subscribedAt: new Date().toISOString()
+  if (!process.env.RESEND_API_KEY) {
+    console.error('Newsletter: RESEND_API_KEY tanımlı değil; abonelik alınamıyor.');
+    return NextResponse.json({ error: 'Newsletter is not configured' }, { status: 503 });
+  }
+
+  // Aynı adrese kısa sürede tekrar e-posta gönderme. Yanıt, adresin daha önce
+  // kullanılıp kullanılmadığını ele vermemek için başarılı istekle aynıdır.
+  const emailLimit = rateLimit(`newsletter:email:${email}`, PER_EMAIL.limit, PER_EMAIL.windowMs);
+  if (!emailLimit.ok) {
+    return NextResponse.json({ message: 'Confirmation email sent' }, { status: 202 });
+  }
+
+  try {
+    const token = createConfirmToken(email, locale);
+    const confirmUrl = `${SITE_URL}/api/newsletter/confirm?token=${encodeURIComponent(token)}`;
+    const { subject, html, text } = buildConfirmEmail(locale, confirmUrl);
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      to: email,
+      subject,
+      html,
+      text
     });
 
-    try {
-      saveSubscribers(subscribers);
-    } catch (saveError) {
-      console.warn('Could not save to file system (likely read-only Vercel environment). Subscriber email:', email);
+    if (error) {
+      console.error('Newsletter: onay e-postası gönderilemedi:', error);
+      return NextResponse.json({ error: 'Could not send confirmation email' }, { status: 502 });
     }
 
-    // Send welcome email via Resend if API key is configured
-    if (process.env.RESEND_API_KEY) {
-      try {
-        const { data, error } = await resend.emails.send({
-          from: 'Mustafa Ali Solmazgül <hello@mustafaalisolmazgul.com.tr>',
-          to: email,
-          subject: 'Bültene Hoş Geldiniz! 🎉',
-          html: `
-            <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-              <h2 style="color: #6366f1;">Merhaba!</h2>
-              <p>Bültenime abone olduğunuz için teşekkür ederim. En yeni teknoloji yazıları, veri analitiği ipuçları ve güncellemelerle görüşmek üzere.</p>
-              <br/>
-              <p>Sevgiler,<br/><strong>Mustafa Ali Solmazgül</strong><br/><a href="https://mustafaalisolmazgul.com.tr" style="color: #8b5cf6; text-decoration: none;">mustafaalisolmazgul.com.tr</a></p>
-            </div>
-          `
-        });
-
-        if (error) {
-          console.error('Resend Error:', error);
-        }
-      } catch (emailError) {
-        console.error('Exception while sending email:', emailError);
-      }
-    }
-
-    return NextResponse.json({ message: 'Subscribed successfully' }, { status: 201 });
+    return NextResponse.json({ message: 'Confirmation email sent' }, { status: 202 });
   } catch (error) {
-    console.error('Newsletter API absolute error:', error);
+    console.error('Newsletter: beklenmeyen hata:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

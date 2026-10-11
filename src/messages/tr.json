@@ -68,7 +68,7 @@
     "placeholder": "E-posta adresiniz",
     "subscribe": "Abone Ol",
     "subscribing": "Kaydediliyor...",
-    "success": "Başarıyla abone oldunuz! 🎉",
+    "success": "Onay bağlantısını e-postanıza gönderdik. Aboneliği tamamlamak için gelen kutunuzu kontrol edin.",
     "error": "Bir hata oluştu. Lütfen tekrar deneyin."
   },
   "contact": {

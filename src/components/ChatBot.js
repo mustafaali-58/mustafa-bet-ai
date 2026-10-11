@@ -30,7 +30,10 @@ export default function ChatBot() {
         body: JSON.stringify({ message: userMsg })
       });
       const data = await res.json();
-      setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: data.reply || 'Bir hata oluştu. Lütfen tekrar deneyin.'
+      }]);
     } catch {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Bir hata oluştu. Lütfen tekrar deneyin.' }]);
     } finally {
@@ -99,6 +102,7 @@ export default function ChatBot() {
             type="text"
             className={styles.input}
             placeholder="Bir soru sorun..."
+            maxLength={500}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             disabled={isLoading}

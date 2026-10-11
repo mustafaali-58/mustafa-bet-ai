@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
+import { Analytics } from '@vercel/analytics/next';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -65,6 +66,8 @@ export default async function LocaleLayout({ children, params }) {
           <Footer />
           <ChatBot />
         </NextIntlClientProvider>
+        {/* Çerezsiz ziyaretçi ve ülke istatistikleri; veriler Vercel panelinde görünür. */}
+        <Analytics />
       </body>
     </html>
   );
