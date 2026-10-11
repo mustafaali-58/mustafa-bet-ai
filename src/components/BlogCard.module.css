@@ -12,11 +12,11 @@
 }
 
 .card:hover .title {
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
 }
 
 .card:hover .readMore {
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
   gap: var(--space-sm);
 }
 
@@ -32,7 +32,7 @@
 }
 
 .readTime {
-  color: var(--color-accent-purple);
+  color: var(--color-accent-purple-text);
   font-family: var(--font-mono);
 }
 
@@ -65,4 +65,15 @@
   transition: all var(--transition-fast);
   margin-top: auto;
   padding-top: var(--space-sm);
+}
+
+.badge {
+  margin-left: auto;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-hover);
+  white-space: nowrap;
 }

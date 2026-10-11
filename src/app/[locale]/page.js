@@ -2,7 +2,9 @@ import { useTranslations } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { projects } from '@/data/projects';
-import { getBlogPosts } from '@/lib/blog';
+import { getBlogPostSummaries } from '@/lib/blog';
+import { homeJsonLd } from '@/lib/seo';
+import JsonLd from '@/components/JsonLd';
 import ProjectCard from '@/components/ProjectCard';
 import BlogCard from '@/components/BlogCard';
 import styles from './Home.module.css';
@@ -10,7 +12,7 @@ import styles from './Home.module.css';
 export default async function HomePage() {
   const locale = await getLocale();
   const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
-  const latestPosts = getBlogPosts(locale).slice(0, 3);
+  const latestPosts = getBlogPostSummaries(locale).slice(0, 3);
 
   return <HomeContent locale={locale} featuredProjects={featuredProjects} latestPosts={latestPosts} />;
 }
@@ -19,9 +21,11 @@ function HomeContent({ locale, featuredProjects, latestPosts }) {
   const t = useTranslations('hero');
   const tHome = useTranslations('home');
   const tBlog = useTranslations('blog');
+  const tProjects = useTranslations('projects');
 
   return (
     <>
+      <JsonLd data={homeJsonLd(locale)} />
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.auroraOrbs}>
@@ -63,7 +67,7 @@ function HomeContent({ locale, featuredProjects, latestPosts }) {
           </div>
           <div className={styles.projectsGrid}>
             {featuredProjects.map(project => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} viewText={tProjects('view_project')} />
             ))}
           </div>
           <div className={styles.viewAll}>
@@ -90,6 +94,8 @@ function HomeContent({ locale, featuredProjects, latestPosts }) {
                   post={post}
                   readMore={tBlog('read_more')}
                   minRead={tBlog('min_read')}
+                  newsBadge={tBlog('news_badge')}
+                  locale={locale}
                 />
               ))}
             </div>

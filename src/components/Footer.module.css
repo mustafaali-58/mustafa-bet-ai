@@ -59,7 +59,7 @@
 }
 
 .footerLink:hover {
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
 }
 
 .socialIcons {
@@ -83,7 +83,7 @@
 .socialLink:hover {
   background: rgba(0, 212, 255, 0.1);
   border-color: var(--color-accent-cyan);
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
   transform: translateY(-2px);
 }
 

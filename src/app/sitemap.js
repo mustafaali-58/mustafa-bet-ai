@@ -1,30 +1,43 @@
 import { getBlogPosts } from '@/lib/blog';
+import { routing } from '@/i18n/routing';
+import { SITE_URL } from '@/lib/seo';
+
+const STATIC_PAGES = ['', '/about', '/projects', '/blog', '/contact', '/resources'];
+
+function languageMap(path, locales) {
+  return Object.fromEntries(locales.map(locale => [locale, `${SITE_URL}/${locale}${path}`]));
+}
 
 export default function sitemap() {
-  const baseUrl = 'https://mustafaalisolmazgul.com.tr';
-  const locales = ['tr', 'en'];
-  const staticPages = ['', '/about', '/projects', '/blog', '/contact', '/resources'];
+  const { locales } = routing;
+  const postsByLocale = Object.fromEntries(locales.map(locale => [locale, getBlogPosts(locale)]));
 
-  // Static pages for both locales
-  const staticEntries = locales.flatMap(locale =>
-    staticPages.map(page => ({
-      url: `${baseUrl}/${locale}${page}`,
-      lastModified: new Date(),
-      changeFrequency: page === '' ? 'daily' : 'weekly',
+  // Ana sayfa ve blog listesi en yeni yazıyla birlikte değişir; diğer sabit
+  // sayfalar için uydurma bir tarih verilmez.
+  const staticEntries = locales.flatMap(locale => {
+    const newest = postsByLocale[locale][0]?.frontmatter.date;
+    return STATIC_PAGES.map(page => ({
+      url: `${SITE_URL}/${locale}${page}`,
+      ...((page === '' || page === '/blog') && newest ? { lastModified: new Date(newest) } : {}),
+      changeFrequency: page === '' || page === '/blog' ? 'daily' : 'monthly',
       priority: page === '' ? 1 : 0.8,
-    }))
-  );
-
-  // Dynamic blog posts
-  const blogEntries = locales.flatMap(locale => {
-    const posts = getBlogPosts(locale);
-    return posts.map(post => ({
-      url: `${baseUrl}/${locale}/blog/${post.slug}`,
-      lastModified: new Date(post.frontmatter.date),
-      changeFrequency: 'monthly',
-      priority: 0.6,
+      alternates: { languages: languageMap(page, locales) }
     }));
   });
+
+  const blogEntries = locales.flatMap(locale =>
+    postsByLocale[locale].map(post => {
+      // Dil karşılığı yalnızca yazının var olduğu diller için verilir.
+      const available = locales.filter(l => postsByLocale[l].some(p => p.slug === post.slug));
+      return {
+        url: `${SITE_URL}/${locale}/blog/${post.slug}`,
+        lastModified: new Date(post.frontmatter.date),
+        changeFrequency: 'monthly',
+        priority: 0.6,
+        alternates: { languages: languageMap(`/blog/${post.slug}`, available) }
+      };
+    })
+  );
 
   return [...staticEntries, ...blogEntries];
 }

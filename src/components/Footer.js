@@ -38,6 +38,7 @@ export default function Footer() {
     { href: '/', label: tNav('home') },
     { href: '/about', label: tNav('about') },
     { href: '/projects', label: tNav('projects') },
+    { href: '/resources', label: tNav('resources') },
     { href: '/blog', label: tNav('blog') },
     { href: '/contact', label: tNav('contact') },
   ];
@@ -56,7 +57,7 @@ export default function Footer() {
           </div>
 
           <div className={styles.footerLinks}>
-            <h4 className={styles.footerTitle}>Links</h4>
+            <h2 className={styles.footerTitle}>{t('links')}</h2>
             {quickLinks.map(link => (
               <Link key={link.href} href={link.href} className={styles.footerLink}>
                 {link.label}
@@ -65,7 +66,7 @@ export default function Footer() {
           </div>
 
           <div className={styles.footerSocial}>
-            <h4 className={styles.footerTitle}>Social</h4>
+            <h2 className={styles.footerTitle}>{t('social')}</h2>
             <div className={styles.socialIcons}>
               {socialLinks.map(social => (
                 <a

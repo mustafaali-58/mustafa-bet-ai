@@ -78,7 +78,7 @@
 }
 
 .skillLevel {
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
 }
@@ -142,7 +142,7 @@
 
 .period {
   font-size: var(--text-xs);
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
   font-family: var(--font-mono);
 }
 
@@ -152,7 +152,7 @@
 }
 
 .company {
-  color: var(--color-accent-purple);
+  color: var(--color-accent-purple-text);
   font-size: var(--text-sm);
   font-weight: 500;
 }

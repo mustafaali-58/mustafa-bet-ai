@@ -18,8 +18,8 @@
   "home": {
     "featured_projects": "Featured Projects",
     "featured_projects_desc": "Some of my recent work",
-    "latest_posts": "Latest Blog Posts",
-    "latest_posts_desc": "Thoughts on technology, software, and more",
+    "latest_posts": "Latest Posts",
+    "latest_posts_desc": "Tech news briefs and articles",
     "view_all_projects": "View All Projects",
     "view_all_posts": "View All Posts"
   },
@@ -29,7 +29,8 @@
     "bio": "With years of experience in data analytics, computer systems, and AutoCAD, I am a detail-oriented professional who always aims for the best. I currently work as a Data Analyst & Reporter at SASA Polyester.",
     "experience": "Experience",
     "skills": "Skills",
-    "education": "Education"
+    "education": "Education",
+    "meta_description": "My experience, skills and education in data analytics, reporting, computer systems and AutoCAD."
   },
   "projects": {
     "title": "Projects",
@@ -50,7 +51,7 @@
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Articles about technology, software, and my thoughts",
+    "subtitle": "Tech news briefs and my own articles",
     "read_more": "Read More",
     "min_read": "min read",
     "search_placeholder": "Search posts...",
@@ -60,7 +61,16 @@
     "all": "All",
     "back_to_blog": "Back to Blog",
     "share": "Share",
-    "published": "Published"
+    "published": "Published",
+    "search_label": "Search posts",
+    "load_more": "Show more",
+    "all_tags": "All tags",
+    "fewer_tags": "Fewer tags",
+    "news_badge": "News brief",
+    "news_disclosure": "This post is an AI-assisted summary of technology news.",
+    "news_disclosure_source": "This post is an AI-assisted summary of a {source} story.",
+    "read_original": "Read the original story",
+    "related": "Related posts"
   },
   "newsletter": {
     "title": "Subscribe to Newsletter",
@@ -81,11 +91,16 @@
     "sending": "Sending...",
     "success": "Message received! I'll get back to you soon.",
     "error": "Something went wrong. Please try again.",
-    "or_reach": "Or reach out directly"
+    "or_reach": "Or reach out directly",
+    "error_rate": "Too many attempts. Please try again later.",
+    "error_fallback": "The message cannot be sent right now. Please reach out directly using the links on this page.",
+    "error_invalid": "Please enter your name, a valid email address and a message of at least 10 characters."
   },
   "footer": {
     "copyright": "All rights reserved.",
-    "built_with": "Built with Next.js"
+    "built_with": "Built with Next.js",
+    "links": "Links",
+    "social": "Social"
   },
   "theme": {
     "dark": "Dark",
@@ -93,5 +108,26 @@
   },
   "language": {
     "switch": "TR"
+  },
+  "chat": {
+    "title": "AI Assistant",
+    "online": "Online",
+    "open": "Open AI assistant",
+    "close": "Close chat",
+    "send": "Send message",
+    "welcome": "👋 Hi! I can answer your questions about Mustafa Ali.",
+    "suggestion_1": "Who is Mustafa Ali?",
+    "suggestion_2": "What projects does he have?",
+    "suggestion_3": "What is his experience?",
+    "placeholder": "Ask a question...",
+    "error": "Something went wrong. Please try again.",
+    "rate_limited": "Too many requests. Please try again in a moment.",
+    "too_long": "Your message is too long. Please use at most 500 characters."
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "toggle_theme": "Toggle theme",
+    "toggle_menu": "Open or close menu",
+    "switch_language": "Switch language"
   }
 }

@@ -1,10 +1,19 @@
 import { useTranslations } from 'next-intl';
-import { getLocale } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
+import { buildMetadata } from '@/lib/seo';
 import { skills, experience, education } from '@/data/skills';
 import styles from './About.module.css';
 
-export async function generateMetadata() {
-  return { title: 'About' };
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'about' });
+
+  return buildMetadata({
+    locale,
+    path: '/about',
+    title: t('title'),
+    description: t('meta_description')
+  });
 }
 
 export default async function AboutPage() {
@@ -42,9 +51,9 @@ function AboutContent({ locale }) {
           <h2 className="section-title">{t('skills')}</h2>
           <div className={styles.skillsGrid}>
             {skills.map((skill, i) => (
-              <div key={skill.name} className={styles.skillItem}>
+              <div key={skill.name.en} className={styles.skillItem}>
                 <div className={styles.skillHeader}>
-                  <span className={styles.skillName}>{skill.name}</span>
+                  <span className={styles.skillName}>{skill.name[locale] || skill.name.en}</span>
                   <span className={styles.skillLevel}>{skill.level}%</span>
                 </div>
                 <div className={styles.skillBar}>

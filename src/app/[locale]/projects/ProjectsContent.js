@@ -36,7 +36,7 @@ export default function ProjectsContent() {
 
           <div className={styles.grid}>
             {filtered.map(project => (
-              <ProjectCard key={project.id} project={project} viewText={t('view_project')} />
+              <ProjectCard key={project.id} project={project} viewText={t('view_project')} headingLevel={2} />
             ))}
           </div>
         </div>

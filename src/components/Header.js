@@ -3,12 +3,13 @@
 import { useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
 import styles from './Header.module.css';
 
 export default function Header() {
   const t = useTranslations('nav');
   const tLang = useTranslations('language');
+  const tA11y = useTranslations('a11y');
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
@@ -41,7 +42,7 @@ export default function Header() {
         <Link 
           href="/" 
           className={styles.logo}
-          aria-label={t('home')}
+          aria-label={`MA. — ${t('home')}`}
         >
           <span className={styles.logoText}>MA</span>
           <span className={styles.logoDot}>.</span>
@@ -64,17 +65,18 @@ export default function Header() {
           <button
             className={styles.langBtn}
             onClick={switchLocale}
-            aria-label="Switch language"
+            aria-label={`${tLang('switch')} — ${tA11y('switch_language')}`}
           >
             {tLang('switch')}
           </button>
 
-          <ThemeToggle />
+          <ThemeToggle label={tA11y('toggle_theme')} />
 
           <button
             className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+            aria-label={tA11y('toggle_menu')}
+            aria-expanded={menuOpen}
           >
             <span></span>
             <span></span>
@@ -86,27 +88,39 @@ export default function Header() {
   );
 }
 
-function ThemeToggle() {
-  const [theme, setTheme] = useState('dark');
+// Tema, <html data-theme> özniteliğinde tutulur. Kayıtlı tercih sayfa
+// çizilmeden önce düzen dosyasındaki satır içi betikle uygulanır; bu bileşen
+// yalnızca o değeri okur ve değiştirir.
+const themeListeners = new Set();
 
-  useEffect(() => {
-    const saved = localStorage.getItem('theme') || 'dark';
-    setTheme(saved);
-    document.documentElement.setAttribute('data-theme', saved);
-  }, []);
+function subscribeTheme(callback) {
+  themeListeners.add(callback);
+  return () => themeListeners.delete(callback);
+}
+
+function readTheme() {
+  return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+}
+
+function ThemeToggle({ label }) {
+  const theme = useSyncExternalStore(subscribeTheme, readTheme, () => 'dark');
 
   const toggle = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    localStorage.setItem('theme', next);
     document.documentElement.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      // Depolama kapalıysa tercih yalnızca bu sayfa için geçerli olur.
+    }
+    themeListeners.forEach(listener => listener());
   };
 
   return (
     <button
       className={styles.themeBtn}
       onClick={toggle}
-      aria-label="Toggle theme"
+      aria-label={label}
     >
       {theme === 'dark' ? (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

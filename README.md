@@ -44,6 +44,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 | `RESEND_API_KEY` | Bülten için | Onay e-postasını gönderir ve onaylanan aboneleri Resend kişi listesine kaydeder. Anahtarın tam erişimli olması gerekir (yalnızca gönderim yetkili anahtar kişi ekleyemez). |
 | `RESEND_SEGMENT_ID` | Hayır | Tanımlıysa onaylanan aboneler bu Resend segmentine eklenir. |
 | `NEWSLETTER_SECRET` | Hayır | Onay bağlantılarını imzalayan sır. Tanımlı değilse `RESEND_API_KEY` kullanılır. |
+| `CONTACT_TO_EMAIL` | Hayır | İletişim formundan gelen mesajların iletileceği adres. Tanımlı değilse sitede yayımlanan iletişim adresi kullanılır. Form da `RESEND_API_KEY` ile gönderir. |
 | `SITE_URL` | Hayır | Onay bağlantılarının kök adresi. Varsayılan: `https://mustafaalisolmazgul.com.tr`. |
 
 Bülten çift onaylıdır: form yalnızca onay e-postası gönderir, adres bağlantıya tıklanınca listeye eklenir.
@@ -51,3 +52,7 @@ Bülten çift onaylıdır: form yalnızca onay e-postası gönderir, adres bağl
 ## Ziyaretçi İstatistikleri
 
 Ziyaretçi, sayfa görüntüleme ve ülke verileri [Vercel Web Analytics](https://vercel.com/docs/analytics) ile toplanır (`src/app/[locale]/layout.js` içindeki `<Analytics />`). Çerez kullanmaz. Verilerin görünmesi için Vercel panelinde projenin **Analytics** sekmesinden **Enable** düğmesine basılmış olmalıdır.
+
+## Blog
+
+Otomatik üretilen yazılar "haber özeti" olarak etiketlenir: kişisel imza taşımaz, sayfada yapay zekâ yardımıyla hazırlandığı belirtilir ve yeni yazılar kaynağın bağlantısını içerir (`source`, `sourceName`). Ön bilgisinde `author` bulunan yazılar elle yazılmış makale sayılır; `type: "article"` ya da `type: "news"` ile bu açıkça belirtilebilir.

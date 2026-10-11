@@ -18,8 +18,8 @@
   "home": {
     "featured_projects": "Öne Çıkan Projeler",
     "featured_projects_desc": "En son çalıştığım projelerden bazıları",
-    "latest_posts": "Son Blog Yazıları",
-    "latest_posts_desc": "Teknoloji, yazılım ve düşüncelerim",
+    "latest_posts": "Son Yazılar",
+    "latest_posts_desc": "Teknoloji haber özetleri ve yazılar",
     "view_all_projects": "Tüm Projeleri Gör",
     "view_all_posts": "Tüm Yazıları Gör"
   },
@@ -29,7 +29,8 @@
     "bio": "Veri analitiği, bilgisayar sistemleri ve AutoCAD üzerine yıllara dayanan tecrübemle, detaylara odaklanan ve her zaman en iyisini hedefleyen bir profesyonelim. SASA Polyester bünyesinde Veri Analisti olarak görev yapıyorum.",
     "experience": "Deneyim",
     "skills": "Yetenekler",
-    "education": "Eğitim"
+    "education": "Eğitim",
+    "meta_description": "Veri analitiği, raporlama, bilgisayar sistemleri ve AutoCAD alanlarındaki deneyimim, yeteneklerim ve eğitimim."
   },
   "projects": {
     "title": "Projeler",
@@ -50,7 +51,7 @@
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Teknoloji, yazılım ve düşüncelerim hakkında yazılar",
+    "subtitle": "Teknoloji haber özetleri ve kendi yazılarım",
     "read_more": "Devamını Oku",
     "min_read": "dk okuma",
     "search_placeholder": "Yazılarda ara...",
@@ -60,7 +61,16 @@
     "all": "Tümü",
     "back_to_blog": "Blog'a Dön",
     "share": "Paylaş",
-    "published": "Yayınlanma"
+    "published": "Yayınlanma",
+    "search_label": "Yazılarda ara",
+    "load_more": "Daha fazla göster",
+    "all_tags": "Tüm etiketler",
+    "fewer_tags": "Daha az etiket",
+    "news_badge": "Haber özeti",
+    "news_disclosure": "Bu yazı, teknoloji haberlerinden yapay zekâ yardımıyla hazırlanmış bir özettir.",
+    "news_disclosure_source": "Bu yazı, {source} haberinden yapay zekâ yardımıyla hazırlanmış bir özettir.",
+    "read_original": "Haberin aslını oku",
+    "related": "İlgili yazılar"
   },
   "newsletter": {
     "title": "Bültenimize Abone Olun",
@@ -81,11 +91,16 @@
     "sending": "Gönderiliyor...",
     "success": "Mesajınız alındı! En kısa sürede dönüş yapacağım.",
     "error": "Bir hata oluştu. Lütfen tekrar deneyin.",
-    "or_reach": "Ya da doğrudan ulaşın"
+    "or_reach": "Ya da doğrudan ulaşın",
+    "error_rate": "Çok fazla deneme yaptınız. Lütfen daha sonra tekrar deneyin.",
+    "error_fallback": "Mesaj şu anda gönderilemiyor. Lütfen yandaki bağlantılardan doğrudan ulaşın.",
+    "error_invalid": "Lütfen adınızı, geçerli bir e-posta adresini ve en az 10 karakterlik bir mesaj girin."
   },
   "footer": {
     "copyright": "Tüm hakları saklıdır.",
-    "built_with": "Next.js ile geliştirildi"
+    "built_with": "Next.js ile geliştirildi",
+    "links": "Bağlantılar",
+    "social": "Sosyal"
   },
   "theme": {
     "dark": "Karanlık",
@@ -93,5 +108,26 @@
   },
   "language": {
     "switch": "EN"
+  },
+  "chat": {
+    "title": "AI Asistan",
+    "online": "Çevrimiçi",
+    "open": "AI asistanı aç",
+    "close": "Sohbeti kapat",
+    "send": "Mesajı gönder",
+    "welcome": "👋 Merhaba! Mustafa Ali hakkında sorularınızı yanıtlayabilirim.",
+    "suggestion_1": "Mustafa Ali kimdir?",
+    "suggestion_2": "Hangi projeleri var?",
+    "suggestion_3": "Deneyimi nedir?",
+    "placeholder": "Bir soru sorun...",
+    "error": "Bir hata oluştu. Lütfen tekrar deneyin.",
+    "rate_limited": "Çok fazla istek gönderdiniz. Lütfen biraz sonra tekrar deneyin.",
+    "too_long": "Mesajınız çok uzun. Lütfen en fazla 500 karakter kullanın."
+  },
+  "a11y": {
+    "skip": "İçeriğe geç",
+    "toggle_theme": "Temayı değiştir",
+    "toggle_menu": "Menüyü aç veya kapat",
+    "switch_language": "Dili değiştir"
   }
 }

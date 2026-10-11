@@ -58,7 +58,7 @@
 
 .greeting {
   font-size: var(--text-lg);
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
   font-weight: 500;
   font-family: var(--font-mono);
   margin-bottom: var(--space-sm);

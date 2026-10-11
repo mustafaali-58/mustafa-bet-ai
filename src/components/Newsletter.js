@@ -51,6 +51,8 @@ export default function Newsletter() {
               type="email"
               className={styles.input}
               placeholder={t('placeholder')}
+              aria-label={t('placeholder')}
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
