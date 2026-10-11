@@ -2,16 +2,19 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { resources } from '@/data/resources';
 import ResourceCard from '@/components/ResourceCard';
+import { buildMetadata } from '@/lib/seo';
 import styles from './Resources.module.css';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'resources' });
 
-  return {
+  return buildMetadata({
+    locale,
+    path: '/resources',
     title: t('title'),
     description: t('description')
-  };
+  });
 }
 
 export default async function ResourcesPage({ params }) {
@@ -24,7 +27,7 @@ function ResourcesContent({ locale }) {
   const t = useTranslations('resources');
 
   return (
-    <main className="container section-padding">
+    <div className="container section-padding">
       <div className={styles.header}>
         <h1 className="section-title">{t('title')}</h1>
         <p className={styles.description}>{t('description')}</p>
@@ -49,6 +52,6 @@ function ResourcesContent({ locale }) {
           </section>
         ))}
       </div>
-    </main>
+    </div>
   );
 }

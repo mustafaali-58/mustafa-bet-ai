@@ -1,9 +1,9 @@
 export const skills = [
-  { name: 'Data Analysis & Reporting', level: 90, category: 'backend' },
-  { name: 'AutoCAD', level: 95, category: 'tools' },
-  { name: 'Recruiting & Talent Management', level: 85, category: 'tools' },
-  { name: 'IT & Computer Systems', level: 85, category: 'backend' },
-  { name: 'Hardware & Network', level: 80, category: 'backend' }
+  { name: { tr: 'Veri Analizi ve Raporlama', en: 'Data Analysis & Reporting' }, level: 90, category: 'backend' },
+  { name: { tr: 'AutoCAD', en: 'AutoCAD' }, level: 95, category: 'tools' },
+  { name: { tr: 'İşe Alım ve Yetenek Yönetimi', en: 'Recruiting & Talent Management' }, level: 85, category: 'tools' },
+  { name: { tr: 'BT ve Bilgisayar Sistemleri', en: 'IT & Computer Systems' }, level: 85, category: 'backend' },
+  { name: { tr: 'Donanım ve Ağ', en: 'Hardware & Network' }, level: 80, category: 'backend' }
 ];
 
 export const experience = [

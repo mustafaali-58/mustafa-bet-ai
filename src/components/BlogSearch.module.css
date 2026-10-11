@@ -28,6 +28,12 @@
   font-size: var(--text-base);
   outline: none;
   transition: all var(--transition-base);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.searchInput::-webkit-search-cancel-button {
+  -webkit-appearance: none;
 }
 
 .searchInput:focus {
@@ -59,7 +65,7 @@
 
 .tagBtn:hover {
   border-color: var(--color-accent-purple);
-  color: var(--color-accent-purple);
+  color: var(--color-accent-purple-text);
   background: rgba(139, 92, 246, 0.12);
 }
 
@@ -78,4 +84,29 @@
   margin-top: var(--space-md);
   font-size: var(--text-sm);
   color: var(--color-text-dim);
+}
+
+.tagToggle {
+  background: transparent;
+  border-style: dashed;
+  color: var(--color-text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+  gap: var(--space-xl);
+}
+
+.loadMore {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2xl);
+}
+
+.empty {
+  text-align: center;
+  padding: var(--space-4xl) 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
 }

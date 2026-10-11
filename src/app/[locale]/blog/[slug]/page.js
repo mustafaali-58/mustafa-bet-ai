@@ -1,30 +1,43 @@
-import { getLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
-import { getBlogPost, getBlogPosts, renderMarkdown } from '@/lib/blog';
+import { routing } from '@/i18n/routing';
+import {
+  getBlogPost,
+  getBlogPosts,
+  getPostLocales,
+  getRelatedPosts,
+  renderMarkdown
+} from '@/lib/blog';
+import { formatDate } from '@/lib/format';
+import { buildMetadata, postJsonLd } from '@/lib/seo';
+import BlogCard from '@/components/BlogCard';
+import JsonLd from '@/components/JsonLd';
+import Newsletter from '@/components/Newsletter';
 import styles from './BlogPost.module.css';
 
 export async function generateMetadata({ params }) {
   const { slug, locale } = await params;
   const post = getBlogPost(slug, locale);
   if (!post) return { title: 'Not Found' };
-  return {
+
+  return buildMetadata({
+    locale,
+    path: `/blog/${slug}`,
     title: post.frontmatter.title,
     description: post.frontmatter.description,
-  };
+    // Dil karşılığı yalnızca yazının gerçekten var olduğu diller için verilir.
+    locales: getPostLocales(slug, routing.locales),
+    type: 'article',
+    publishedTime: post.frontmatter.date,
+    tags: post.frontmatter.tags
+  });
 }
 
 export async function generateStaticParams() {
-  const locales = ['tr', 'en'];
-  const allParams = [];
-  for (const locale of locales) {
-    const posts = getBlogPosts(locale);
-    for (const post of posts) {
-      allParams.push({ locale, slug: post.slug });
-    }
-  }
-  return allParams;
+  return routing.locales.flatMap(locale =>
+    getBlogPosts(locale).map(post => ({ locale, slug: post.slug }))
+  );
 }
 
 export default async function BlogPostPage({ params }) {
@@ -33,19 +46,17 @@ export default async function BlogPostPage({ params }) {
 
   if (!post) notFound();
 
+  const t = await getTranslations({ locale, namespace: 'blog' });
   const htmlContent = await renderMarkdown(post.content);
-
-  return <BlogPostContent post={post} htmlContent={htmlContent} />;
-}
-
-function BlogPostContent({ post, htmlContent }) {
-  const t = useTranslations('blog');
+  const relatedPosts = getRelatedPosts(slug, locale, 3);
+  const { source, sourceName } = post.frontmatter;
 
   return (
     <div className={styles.page}>
+      <JsonLd data={postJsonLd(post, locale)} />
       <article className={`container ${styles.article}`}>
         <Link href="/blog" className={styles.backLink}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
           </svg>
           {t('back_to_blog')}
@@ -53,12 +64,8 @@ function BlogPostContent({ post, htmlContent }) {
 
         <header className={styles.header}>
           <div className={styles.meta}>
-            <time>
-              {t('published')}: {new Date(post.frontmatter.date).toLocaleDateString('tr-TR', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
+            <time dateTime={post.frontmatter.date}>
+              {t('published')}: {formatDate(post.frontmatter.date, locale)}
             </time>
             <span className={styles.readTime}>{post.readingTime} {t('min_read')}</span>
           </div>
@@ -73,11 +80,51 @@ function BlogPostContent({ post, htmlContent }) {
           </div>
         </header>
 
+        {post.type === 'news' && (
+          <aside className={styles.disclosure}>
+            <span className={styles.disclosureBadge}>{t('news_badge')}</span>
+            <p>
+              {source
+                ? t('news_disclosure_source', { source: sourceName || new URL(source).hostname.replace(/^www\./, '') })
+                : t('news_disclosure')}
+              {source && (
+                <>
+                  {' '}
+                  <a href={source} target="_blank" rel="noopener noreferrer nofollow">
+                    {t('read_original')}
+                  </a>
+                </>
+              )}
+            </p>
+          </aside>
+        )}
+
         <div
           className={styles.content}
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
       </article>
+
+      <div className={`container ${styles.after}`}>
+        {relatedPosts.length > 0 && (
+          <section className={styles.related}>
+            <h2 className={styles.relatedTitle}>{t('related')}</h2>
+            <div className={styles.relatedGrid}>
+              {relatedPosts.map(related => (
+                <BlogCard
+                  key={related.slug}
+                  post={related}
+                  readMore={t('read_more')}
+                  minRead={t('min_read')}
+                  newsBadge={t('news_badge')}
+                  locale={locale}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+        <Newsletter />
+      </div>
     </div>
   );
 }

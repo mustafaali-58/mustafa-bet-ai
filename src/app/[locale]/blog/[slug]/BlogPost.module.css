@@ -20,7 +20,7 @@
 }
 
 .backLink:hover {
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
 }
 
 .header {
@@ -39,7 +39,7 @@
 }
 
 .readTime {
-  color: var(--color-accent-purple);
+  color: var(--color-accent-purple-text);
   font-family: var(--font-mono);
 }
 
@@ -106,7 +106,7 @@
 }
 
 .content a {
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -123,5 +123,70 @@
 
   .content {
     font-size: var(--text-base);
+  }
+}
+
+/* Haber özeti bildirimi */
+.disclosure {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-2xl);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.disclosure a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.disclosure a:hover {
+  color: var(--color-accent-cyan-text);
+}
+
+.disclosureBadge {
+  flex-shrink: 0;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-hover);
+  white-space: nowrap;
+}
+
+/* Yazı sonu: ilgili yazılar ve bülten */
+.after {
+  max-width: 1100px;
+  margin-top: var(--space-3xl);
+}
+
+.related {
+  padding-top: var(--space-2xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.relatedTitle {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-xl);
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: var(--space-xl);
+}
+
+@media (max-width: 600px) {
+  .disclosure {
+    flex-direction: column;
+    gap: var(--space-sm);
   }
 }

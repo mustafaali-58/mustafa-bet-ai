@@ -64,9 +64,15 @@ async function generateBlog() {
 
     console.log(`Generating blog post for: ${targetNews.title}`);
 
+    // Yazılar kişisel köşe yazısı değil, kaynağı belli "haber özeti"dir: birinci
+    // tekil şahıs, kişisel görüş ya da uzmanlık iddiası içermez.
     const prompt = `
-      You are Mustafa Ali Solmazgül, a senior software architect and AI/Fintech expert. 
-      Write a professional, insightful blog post in ONE JSON object based on the news below.
+      You are a neutral technology news editor.
+      Write a short news brief in ONE JSON object that summarizes the news below.
+      Rules:
+      - Summarize only what the source says; do not invent facts, figures, or quotes.
+      - Write in the third person. No first-person opinions and no claims of personal expertise.
+      - Use "## " markdown subheadings; do not repeat the title as a heading in the content.
       Source News: ${targetNews.title}
       Link: ${targetNews.link}
       Snippet: ${targetNews.contentSnippet}
@@ -77,16 +83,16 @@ async function generateBlog() {
            "title": "Turkish Title", 
            "description": "Turkish short description", 
            "tags": ["Tag1", "Tag2"], 
-           "content": "# Turkish Title\\n\\nTurkish content body here without frontmatter..." 
+           "content": "Turkish content body here without frontmatter and without the title..." 
         },
         "en": { 
            "title": "English Title", 
            "description": "English short description", 
            "tags": ["Tag1", "Tag2"], 
-           "content": "# English Title\\n\\nEnglish content body here without frontmatter..." 
+           "content": "English content body here without frontmatter and without the title..." 
         }
       }
-      Tone: Technical but accessible, forward-looking.
+      Tone: Neutral, clear, and accessible.
     `;
 
     let blogJson;
@@ -103,24 +109,45 @@ async function generateBlog() {
     const slug = slugify(targetNews.title, { lower: true, strict: true });
     const date = new Date().toISOString();
 
+    // İki dil de eksiksiz gelmeden hiçbir dosya yazılmaz; aksi halde bir dilin
+    // yazısı diğeri olmadan yayımlanır.
+    for (const lang of ['tr', 'en']) {
+      const data = blogJson?.[lang];
+      const complete = data
+        && typeof data.title === 'string' && data.title.trim()
+        && typeof data.description === 'string'
+        && typeof data.content === 'string' && data.content.trim()
+        && Array.isArray(data.tags);
+      if (!complete) throw new Error(`Model output is missing or incomplete for "${lang}"`);
+    }
+
+    const sourceUrl = /^https?:\/\//.test(targetNews.link || '') ? targetNews.link : null;
+
     const generateMarkdown = (data) => `---
 title: ${JSON.stringify(data.title)}
 date: ${date}
 description: ${JSON.stringify(data.description)}
-tags: ${JSON.stringify(data.tags)}
+tags: ${JSON.stringify(data.tags.map(String))}
 image: null
+type: "news"
+source: ${JSON.stringify(sourceUrl)}
+sourceName: "TechCrunch"
 ---
 ${data.content}`;
 
-    // Save TR
-    fs.writeFileSync(path.join(blogsDir, 'tr', `${slug}.md`), generateMarkdown(blogJson.tr));
-    // Save EN
-    fs.writeFileSync(path.join(blogsDir, 'en', `${slug}.md`), generateMarkdown(blogJson.en));
+    const files = ['tr', 'en'].map(lang => ({
+      file: path.join(blogsDir, lang, `${slug}.md`),
+      body: generateMarkdown(blogJson[lang])
+    }));
+    for (const { file, body } of files) fs.writeFileSync(file, body);
 
     console.log(`Blog successfully generated: ${slug}`);
 
   } catch (error) {
-    console.error('Final Error:', error.message);
+    // GitHub Actions'ta çalıştırma özetinde görünen bir hata notu bırakır ve
+    // adımı başarısız sayar; iş akışı yayınlama adımına yine de devam eder.
+    console.error(`::error title=Blog üretimi başarısız::${error.message}`);
+    process.exitCode = 1;
   }
 }
 

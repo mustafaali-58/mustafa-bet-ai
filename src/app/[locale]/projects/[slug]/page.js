@@ -1,8 +1,23 @@
-import { useTranslations, useLocale } from 'next-intl';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { projects } from '@/data/projects';
 import { Link } from '@/i18n/navigation';
+import { buildMetadata } from '@/lib/seo';
 import styles from './ProjectDetail.module.css';
+
+export async function generateMetadata({ params }) {
+  const { slug, locale } = await params;
+  const project = projects.find(p => p.slug === slug);
+  if (!project) return { title: 'Not Found' };
+
+  return buildMetadata({
+    locale,
+    path: `/projects/${slug}`,
+    title: project.title[locale],
+    description: project.description[locale]
+  });
+}
 
 export async function generateStaticParams() {
   const locales = ['tr', 'en'];
@@ -48,7 +63,14 @@ function ProjectDetailContent({ project, locale }) {
 
         <div className={styles.heroImage}>
           {project.image ? (
-            <img src={project.image} alt={project.title[locale]} />
+            <Image
+              src={project.image}
+              alt={project.title[locale]}
+              width={640}
+              height={640}
+              sizes="(max-width: 1200px) 100vw, 1150px"
+              preload
+            />
           ) : (
             <div className={styles.placeholder}>{project.title[locale]?.[0]}</div>
           )}

@@ -28,7 +28,10 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node scripts/generate-blog.mjs
         
+      # Blog üretimi başarısız olsa da site yayınlanır; çalıştırma yine de
+      # başarısız görünür, böylece hata fark edilir.
       - name: Commit and Push
+        if: ${{ !cancelled() }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -37,6 +40,7 @@ jobs:
           git push
 
       - name: Deploy to Vercel
+        if: ${{ !cancelled() }}
         run: |
           mkdir -p .vercel
           echo '{"projectId":"${{ secrets.VERCEL_PROJECT_ID }}","orgId":"${{ secrets.VERCEL_ORG_ID }}"}' > .vercel/project.json

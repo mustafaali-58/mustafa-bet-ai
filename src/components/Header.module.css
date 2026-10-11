@@ -71,7 +71,7 @@
 }
 
 .navLink.active {
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
   background: rgba(0, 212, 255, 0.08);
 }
 

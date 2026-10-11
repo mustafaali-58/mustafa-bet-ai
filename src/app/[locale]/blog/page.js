@@ -1,21 +1,34 @@
-import { getLocale } from 'next-intl/server';
-import { getBlogPosts } from '@/lib/blog';
+import { getTranslations } from 'next-intl/server';
+import { getBlogPostSummaries } from '@/lib/blog';
+import { buildMetadata } from '@/lib/seo';
 import BlogSearch from '@/components/BlogSearch';
 import Newsletter from '@/components/Newsletter';
 import styles from './Blog.module.css';
 
-export async function generateMetadata() {
-  return { title: 'Blog' };
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'blog' });
+
+  return buildMetadata({
+    locale,
+    path: '/blog',
+    title: t('title'),
+    description: t('subtitle')
+  });
 }
 
-export default async function BlogPage() {
-  const locale = await getLocale();
-  const posts = getBlogPosts(locale);
+export default async function BlogPage({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'blog' });
+  // Listeye yalnızca kartta gösterilen alanlar gider; yazı gövdeleri gitmez.
+  const posts = getBlogPostSummaries(locale);
 
   return (
     <div className={styles.page}>
       <section className="section">
         <div className="container">
+          <h1 className="section-title">{t('title')}</h1>
+          <p className="section-subtitle">{t('subtitle')}</p>
           <BlogSearch posts={posts} />
           <Newsletter />
         </div>

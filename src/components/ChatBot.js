@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './ChatBot.module.css';
 
 export default function ChatBot() {
+  const t = useTranslations('chat');
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -11,8 +13,8 @@ export default function ChatBot() {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+    if (isOpen) messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isOpen]);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -29,17 +31,24 @@ export default function ChatBot() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userMsg })
       });
-      const data = await res.json();
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: data.reply || 'Bir hata oluştu. Lütfen tekrar deneyin.'
-      }]);
+      const data = await res.json().catch(() => ({}));
+
+      // Hata durumlarında metin sayfanın dilinde gösterilir.
+      let content;
+      if (res.ok && data.reply) content = data.reply;
+      else if (res.status === 429) content = t('rate_limited');
+      else if (res.status === 400) content = t('too_long');
+      else content = t('error');
+
+      setMessages(prev => [...prev, { role: 'assistant', content }]);
     } catch {
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Bir hata oluştu. Lütfen tekrar deneyin.' }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: t('error') }]);
     } finally {
       setIsLoading(false);
     }
   };
+
+  const suggestions = [t('suggestion_1'), t('suggestion_2'), t('suggestion_3')];
 
   return (
     <>
@@ -47,34 +56,40 @@ export default function ChatBot() {
       <button
         className={`${styles.fab} ${isOpen ? styles.fabHidden : ''}`}
         onClick={() => setIsOpen(true)}
-        aria-label="AI Asistan"
+        aria-label={t('open')}
+        aria-expanded={isOpen}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
       </button>
 
-      {/* Chat Panel */}
-      <div className={`${styles.panel} ${isOpen ? styles.panelOpen : ''}`}>
+      {/* Chat Panel: kapalıyken klavye ve ekran okuyucu için de gizlenir. */}
+      <div
+        className={`${styles.panel} ${isOpen ? styles.panelOpen : ''}`}
+        role="dialog"
+        aria-label={t('title')}
+        inert={!isOpen}
+      >
         <div className={styles.header}>
           <div className={styles.headerInfo}>
-            <div className={styles.avatar}>MA</div>
+            <div className={styles.avatar} aria-hidden="true">MA</div>
             <div>
-              <h4 className={styles.headerTitle}>AI Asistan</h4>
-              <span className={styles.headerStatus}>Çevrimiçi</span>
+              <p className={styles.headerTitle}>{t('title')}</p>
+              <span className={styles.headerStatus}>{t('online')}</span>
             </div>
           </div>
-          <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <button className={styles.closeBtn} onClick={() => setIsOpen(false)} aria-label={t('close')}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
         </div>
 
-        <div className={styles.messages}>
+        <div className={styles.messages} aria-live="polite">
           {messages.length === 0 && (
             <div className={styles.welcome}>
-              <p>👋 Merhaba! Mustafa Ali hakkında sorularınızı yanıtlayabilirim.</p>
+              <p>{t('welcome')}</p>
               <div className={styles.suggestions}>
-                {['Mustafa Ali kimdir?', 'Hangi projeleri var?', 'Deneyimi nedir?'].map(q => (
+                {suggestions.map(q => (
                   <button key={q} className={styles.suggestionBtn} onClick={() => { setInput(q); }}>
                     {q}
                   </button>
@@ -101,14 +116,15 @@ export default function ChatBot() {
           <input
             type="text"
             className={styles.input}
-            placeholder="Bir soru sorun..."
+            placeholder={t('placeholder')}
+            aria-label={t('placeholder')}
             maxLength={500}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             disabled={isLoading}
           />
-          <button type="submit" className={styles.sendBtn} disabled={isLoading || !input.trim()}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <button type="submit" className={styles.sendBtn} disabled={isLoading || !input.trim()} aria-label={t('send')}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
             </svg>
           </button>

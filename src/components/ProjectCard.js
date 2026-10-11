@@ -1,19 +1,23 @@
+import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 import styles from './ProjectCard.module.css';
 
-export default function ProjectCard({ project, viewText }) {
+export default function ProjectCard({ project, viewText, headingLevel = 3 }) {
   const locale = useLocale();
+  const Heading = `h${headingLevel}`;
 
   return (
     <div className={`glass-card ${styles.card}`}>
       <div className={styles.imageWrapper}>
         {project.image ? (
-          <img 
-            src={project.image} 
-            alt={project.title[locale]} 
-            className={styles.image} 
-            loading="lazy"
+          <Image
+            src={project.image}
+            alt={project.title[locale]}
+            width={640}
+            height={640}
+            sizes="(max-width: 768px) 100vw, 400px"
+            className={styles.image}
           />
         ) : (
           <div className={styles.placeholder}>
@@ -23,7 +27,7 @@ export default function ProjectCard({ project, viewText }) {
       </div>
       <div className={styles.cardContent}>
         <Link href={`/projects/${project.slug}`}>
-          <h3 className={styles.title}>{project.title[locale]}</h3>
+          <Heading className={styles.title}>{project.title[locale]}</Heading>
         </Link>
         <p className={styles.description}>{project.description[locale]}</p>
         <div className={styles.tags}>
@@ -32,9 +36,15 @@ export default function ProjectCard({ project, viewText }) {
           ))}
         </div>
         <div className={styles.links}>
-          <Link href={`/projects/${project.slug}`} className={`btn btn-outline ${styles.linkBtn}`}>
-            {viewText}
-          </Link>
+          {viewText && (
+            <Link
+              href={`/projects/${project.slug}`}
+              className={`btn btn-outline ${styles.linkBtn}`}
+              aria-label={`${viewText}: ${project.title[locale]}`}
+            >
+              {viewText}
+            </Link>
+          )}
           {project.liveUrl && (
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={`btn btn-primary ${styles.linkBtn}`}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>

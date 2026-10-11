@@ -157,7 +157,7 @@
 
 .suggestionBtn:hover {
   border-color: var(--color-accent-cyan);
-  color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan-text);
 }
 
 .message {
