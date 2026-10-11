@@ -9,11 +9,15 @@
   },
   "hero": {
     "greeting": "Hi, I'm",
-    "name": "Mustafa Ali",
+    "name": "Mustafa Ali Solmazgül",
     "title": "Data Analyst & Tech Specialist",
     "description": "I add value to corporate processes through data analytics and computer system infrastructures.",
     "cta_projects": "View Projects",
-    "cta_contact": "Get in Touch"
+    "cta_contact": "Get in Touch",
+    "fact_organization": "Organization",
+    "fact_role": "Role",
+    "fact_period": "Period",
+    "fact_education": "Education"
   },
   "home": {
     "featured_projects": "Featured Projects",
@@ -63,14 +67,14 @@
     "share": "Share",
     "published": "Published",
     "search_label": "Search posts",
-    "load_more": "Show more",
-    "all_tags": "All tags",
-    "fewer_tags": "Fewer tags",
+    "load_more": "Show More",
+    "all_tags": "All Tags",
+    "fewer_tags": "Fewer Tags",
     "news_badge": "News brief",
     "news_disclosure": "This post is an AI-assisted summary of technology news.",
     "news_disclosure_source": "This post is an AI-assisted summary of a {source} story.",
-    "read_original": "Read the original story",
-    "related": "Related posts"
+    "read_original": "Read the Original Story",
+    "related": "Related Posts"
   },
   "newsletter": {
     "title": "Subscribe to Newsletter",
@@ -115,7 +119,7 @@
     "open": "Open AI assistant",
     "close": "Close chat",
     "send": "Send message",
-    "welcome": "👋 Hi! I can answer your questions about Mustafa Ali.",
+    "welcome": "Hi! I can answer your questions about Mustafa Ali.",
     "suggestion_1": "Who is Mustafa Ali?",
     "suggestion_2": "What projects does he have?",
     "suggestion_3": "What is his experience?",
@@ -128,6 +132,14 @@
     "skip": "Skip to content",
     "toggle_theme": "Toggle theme",
     "toggle_menu": "Open or close menu",
-    "switch_language": "Switch language"
+    "switch_language": "Switch language",
+    "main_nav": "Main navigation",
+    "external": "opens in a new tab"
+  },
+  "not_found": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for may have been moved or removed.",
+    "home": "Back to Home",
+    "blog": "Browse Posts"
   }
 }

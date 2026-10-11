@@ -11,10 +11,28 @@ export default function ChatBot() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
+  const launcherRef = useRef(null);
 
   useEffect(() => {
-    if (isOpen) messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (isOpen) messagesEndRef.current?.scrollIntoView({ block: 'nearest' });
   }, [messages, isOpen]);
+
+  // Pencere açılınca yazı alanına odaklanılır; Escape ile kapanır. Kapanınca
+  // odak, pencereyi açan düğmeye döner.
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    inputRef.current?.focus();
+    const launcher = launcherRef.current;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      launcher?.focus();
+    };
+  }, [isOpen]);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -52,19 +70,20 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* Floating Button */}
       <button
-        className={`${styles.fab} ${isOpen ? styles.fabHidden : ''}`}
+        ref={launcherRef}
+        type="button"
+        className={`${styles.launcher} ${isOpen ? styles.launcherHidden : ''}`}
         onClick={() => setIsOpen(true)}
         aria-label={t('open')}
         aria-expanded={isOpen}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
       </button>
 
-      {/* Chat Panel: kapalıyken klavye ve ekran okuyucu için de gizlenir. */}
+      {/* Kapalıyken klavye ve ekran okuyucu için de gizlenir. */}
       <div
         className={`${styles.panel} ${isOpen ? styles.panelOpen : ''}`}
         role="dialog"
@@ -72,15 +91,12 @@ export default function ChatBot() {
         inert={!isOpen}
       >
         <div className={styles.header}>
-          <div className={styles.headerInfo}>
-            <div className={styles.avatar} aria-hidden="true">MA</div>
-            <div>
-              <p className={styles.headerTitle}>{t('title')}</p>
-              <span className={styles.headerStatus}>{t('online')}</span>
-            </div>
+          <div>
+            <p className={styles.title}>{t('title')}</p>
+            <p className={styles.status}>{t('online')}</p>
           </div>
-          <button className={styles.closeBtn} onClick={() => setIsOpen(false)} aria-label={t('close')}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <button type="button" className={styles.close} onClick={() => setIsOpen(false)} aria-label={t('close')}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
         </div>
 
@@ -90,7 +106,12 @@ export default function ChatBot() {
               <p>{t('welcome')}</p>
               <div className={styles.suggestions}>
                 {suggestions.map(q => (
-                  <button key={q} className={styles.suggestionBtn} onClick={() => { setInput(q); }}>
+                  <button
+                    key={q}
+                    type="button"
+                    className={styles.suggestion}
+                    onClick={() => { setInput(q); inputRef.current?.focus(); }}
+                  >
                     {q}
                   </button>
                 ))}
@@ -98,15 +119,15 @@ export default function ChatBot() {
             </div>
           )}
           {messages.map((msg, i) => (
-            <div key={i} className={`${styles.message} ${msg.role === 'user' ? styles.userMsg : styles.assistantMsg}`}>
+            <div key={i} className={`${styles.message} ${msg.role === 'user' ? styles.fromUser : styles.fromAssistant}`}>
               {msg.content}
             </div>
           ))}
           {isLoading && (
-            <div className={`${styles.message} ${styles.assistantMsg}`}>
-              <div className={styles.typing}>
+            <div className={`${styles.message} ${styles.fromAssistant}`}>
+              <span className={styles.typing} aria-hidden="true">
                 <span></span><span></span><span></span>
-              </div>
+              </span>
             </div>
           )}
           <div ref={messagesEndRef} />
@@ -114,8 +135,9 @@ export default function ChatBot() {
 
         <form className={styles.inputArea} onSubmit={sendMessage}>
           <input
+            ref={inputRef}
             type="text"
-            className={styles.input}
+            className="input"
             placeholder={t('placeholder')}
             aria-label={t('placeholder')}
             maxLength={500}
@@ -123,7 +145,7 @@ export default function ChatBot() {
             onChange={(e) => setInput(e.target.value)}
             disabled={isLoading}
           />
-          <button type="submit" className={styles.sendBtn} disabled={isLoading || !input.trim()} aria-label={t('send')}>
+          <button type="submit" className={styles.send} disabled={isLoading || !input.trim()} aria-label={t('send')}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
             </svg>

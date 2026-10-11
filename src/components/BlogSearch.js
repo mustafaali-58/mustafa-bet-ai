@@ -63,14 +63,14 @@ export default function BlogSearch({ posts }) {
 
   return (
     <>
-      <div className={styles.searchSection}>
+      <div className={styles.filters}>
         <div className={styles.searchBar}>
-          <svg className={styles.searchIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+          <svg className={styles.searchIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" /><line x1="20" y1="20" x2="16.2" y2="16.2" />
           </svg>
           <input
             type="search"
-            className={styles.searchInput}
+            className={`input ${styles.searchInput}`}
             placeholder={t('search_placeholder')}
             aria-label={t('search_label')}
             value={searchQuery}
@@ -82,7 +82,7 @@ export default function BlogSearch({ posts }) {
           <div className={styles.tags}>
             <button
               type="button"
-              className={`${styles.tagBtn} ${!activeTag ? styles.tagBtnActive : ''}`}
+              className={`${styles.chip} ${!activeTag ? styles.chipActive : ''}`}
               aria-pressed={!activeTag}
               onClick={() => updateTag(null)}
             >
@@ -92,7 +92,7 @@ export default function BlogSearch({ posts }) {
               <button
                 key={tag}
                 type="button"
-                className={`${styles.tagBtn} ${activeTag === tag ? styles.tagBtnActive : ''}`}
+                className={`${styles.chip} ${activeTag === tag ? styles.chipActive : ''}`}
                 aria-pressed={activeTag === tag}
                 onClick={() => updateTag(activeTag === tag ? null : tag)}
               >
@@ -102,7 +102,7 @@ export default function BlogSearch({ posts }) {
             {allTags.length > TOP_TAG_COUNT && (
               <button
                 type="button"
-                className={`${styles.tagBtn} ${styles.tagToggle}`}
+                className={styles.tagToggle}
                 aria-expanded={showAllTags}
                 onClick={() => setShowAllTags(value => !value)}
               >
@@ -113,7 +113,7 @@ export default function BlogSearch({ posts }) {
         )}
 
         {searchQuery || activeTag ? (
-          <p className={styles.resultCount} role="status">
+          <p className={`${styles.resultCount} nums`} role="status">
             {filteredPosts.length} {t('results')}
           </p>
         ) : null}
@@ -121,12 +121,11 @@ export default function BlogSearch({ posts }) {
 
       {filteredPosts.length > 0 ? (
         <>
-          <div className={styles.grid}>
+          <div className={styles.list}>
             {visiblePosts.map(post => (
               <BlogCard
                 key={post.slug}
                 post={post}
-                readMore={t('read_more')}
                 minRead={t('min_read')}
                 newsBadge={t('news_badge')}
                 locale={locale}
@@ -141,7 +140,7 @@ export default function BlogSearch({ posts }) {
                 className="btn btn-outline"
                 onClick={() => setVisibleCount(count => count + PAGE_SIZE)}
               >
-                {t('load_more')} ({filteredPosts.length - visibleCount})
+                <span className="nums">{t('load_more')} ({filteredPosts.length - visibleCount})</span>
               </button>
             </div>
           )}

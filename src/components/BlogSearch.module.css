@@ -1,112 +1,99 @@
-.searchSection {
-  margin-bottom: var(--space-2xl);
+.filters {
+  margin-bottom: var(--sp-5);
 }
 
 .searchBar {
   position: relative;
-  margin-bottom: var(--space-lg);
+  max-width: 32rem;
 }
 
 .searchIcon {
   position: absolute;
-  left: 16px;
   top: 50%;
+  left: 0.75rem;
+  color: var(--ink-faint);
   transform: translateY(-50%);
-  color: var(--color-text-muted);
   pointer-events: none;
 }
 
-.searchInput {
-  width: 100%;
-  padding: 14px 16px 14px 48px;
-  border-radius: var(--radius-full);
-  background: var(--color-surface-glass);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: var(--text-base);
-  outline: none;
-  transition: all var(--transition-base);
+/* Genel `.input` kuralını sıraya bağlı kalmadan ezmek için iki sınıflı seçici. */
+.searchBar .searchInput {
+  padding-left: 2.5rem;
   -webkit-appearance: none;
   appearance: none;
 }
 
-.searchInput::-webkit-search-cancel-button {
+.searchBar .searchInput::-webkit-search-cancel-button {
   -webkit-appearance: none;
-}
-
-.searchInput:focus {
-  border-color: var(--color-accent-cyan);
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-}
-
-.searchInput::placeholder {
-  color: var(--color-text-dim);
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
 }
 
-.tagBtn {
-  padding: 6px 16px;
-  border-radius: var(--radius-full);
-  font-size: var(--text-xs);
+/* Etiket filtresi: seçili olan mürekkep rengiyle dolar. */
+.chip {
+  min-height: 2rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-size: var(--fs-xs);
   font-weight: 500;
-  background: rgba(139, 92, 246, 0.08);
-  color: var(--color-text-muted);
-  border: 1px solid var(--color-border);
-  cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 
-.tagBtn:hover {
-  border-color: var(--color-accent-purple);
-  color: var(--color-accent-purple-text);
-  background: rgba(139, 92, 246, 0.12);
+.chip:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
 }
 
-.tagBtnActive {
-  background: var(--gradient-aurora);
-  color: #fff;
-  border-color: transparent;
-}
-
-.tagBtnActive:hover {
-  opacity: 0.9;
-  color: #fff;
-}
-
-.resultCount {
-  margin-top: var(--space-md);
-  font-size: var(--text-sm);
-  color: var(--color-text-dim);
+.chipActive,
+.chipActive:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
 }
 
 .tagToggle {
-  background: transparent;
-  border-style: dashed;
-  color: var(--color-text);
+  min-height: 2rem;
+  padding: 0 0.25rem;
+  color: var(--accent);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
-  gap: var(--space-xl);
+.tagToggle:hover {
+  color: var(--accent-hover);
+}
+
+.resultCount {
+  margin-top: var(--sp-4);
+  color: var(--ink-muted);
+  font-size: var(--fs-sm);
+}
+
+.list {
+  border-top: 1px solid var(--line);
 }
 
 .loadMore {
   display: flex;
   justify-content: center;
-  margin-top: var(--space-2xl);
+  margin-top: var(--sp-6);
 }
 
 .empty {
+  padding-block: var(--sp-8);
+  border-top: 1px solid var(--line);
+  color: var(--ink-muted);
   text-align: center;
-  padding: var(--space-4xl) 0;
-  color: var(--color-text-muted);
-  font-size: var(--text-lg);
 }

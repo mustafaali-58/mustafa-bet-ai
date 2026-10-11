@@ -1,7 +1,7 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { resources } from '@/data/resources';
 import ResourceCard from '@/components/ResourceCard';
+import PageHeader from '@/components/PageHeader';
 import { buildMetadata } from '@/lib/seo';
 import styles from './Resources.module.css';
 
@@ -19,39 +19,33 @@ export async function generateMetadata({ params }) {
 
 export default async function ResourcesPage({ params }) {
   const { locale } = await params;
-
-  return <ResourcesContent locale={locale} />;
-}
-
-function ResourcesContent({ locale }) {
-  const t = useTranslations('resources');
+  const t = await getTranslations({ locale, namespace: 'resources' });
+  const tA11y = await getTranslations({ locale, namespace: 'a11y' });
 
   return (
-    <div className="container section-padding">
-      <div className={styles.header}>
-        <h1 className="section-title">{t('title')}</h1>
-        <p className={styles.description}>{t('description')}</p>
-      </div>
+    <>
+      <PageHeader title={t('title')} lead={t('description')} />
 
-      <div className={styles.categories}>
+      <div className={`container ${styles.body}`}>
         {resources.map((category) => (
-          <section key={category.id} className={styles.categorySection}>
-            <h2 className={styles.categoryTitle}>
+          <section key={category.id} className={styles.category} aria-labelledby={`res-${category.id}`}>
+            <h2 id={`res-${category.id}`} className={styles.categoryTitle}>
               {locale === 'tr' ? category.category_tr : category.category}
             </h2>
-            <div className={styles.grid}>
+            <ul className={styles.list}>
               {category.items.map((item) => (
-                <ResourceCard 
-                  key={item.name} 
-                  item={item} 
-                  locale={locale} 
+                <ResourceCard
+                  key={item.name}
+                  item={item}
+                  locale={locale}
                   viewText={t('explore')}
+                  externalText={tA11y('external')}
                 />
               ))}
-            </div>
+            </ul>
           </section>
         ))}
       </div>
-    </div>
+    </>
   );
 }

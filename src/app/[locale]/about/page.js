@@ -1,7 +1,7 @@
-import { useTranslations } from 'next-intl';
-import { getLocale, getTranslations } from 'next-intl/server';
-import { buildMetadata } from '@/lib/seo';
+import { getTranslations } from 'next-intl/server';
 import { skills, experience, education } from '@/data/skills';
+import { buildMetadata } from '@/lib/seo';
+import PageHeader from '@/components/PageHeader';
 import styles from './About.module.css';
 
 export async function generateMetadata({ params }) {
@@ -16,98 +16,71 @@ export async function generateMetadata({ params }) {
   });
 }
 
-export default async function AboutPage() {
-  const locale = await getLocale();
-  return <AboutContent locale={locale} />;
+// Deneyim ve eğitim aynı düzeni paylaşır: solda dönem, sağda unvan, kurum ve
+// açıklama. Sıralı bir zaman çizelgesi olduğu için sıralı liste kullanılır.
+function Timeline({ items, locale, getTitle, getOrganization }) {
+  return (
+    <ol className={styles.timeline}>
+      {items.map((item, index) => (
+        <li key={index} className={styles.entry}>
+          <p className={`${styles.period} nums`}>{item.period[locale]}</p>
+          <div>
+            <h3 className={styles.entryTitle}>{getTitle(item)}</h3>
+            <p className={styles.organization}>{getOrganization(item)}</p>
+            <p className={styles.entryText}>{item.description[locale]}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
 }
 
-function AboutContent({ locale }) {
-  const t = useTranslations('about');
+export default async function AboutPage({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'about' });
 
   return (
-    <div className={styles.page}>
-      <section className={`section ${styles.heroSection}`}>
-        <div className="container">
-          <h1 className={`section-title ${styles.title}`}>{t('title')}</h1>
-          <p className={`section-subtitle ${styles.subtitle}`}>{t('subtitle')}</p>
-        </div>
-      </section>
+    <>
+      <PageHeader title={t('title')} lead={t('subtitle')} />
 
-      <section className={`section ${styles.bioSection}`}>
-        <div className={`container ${styles.bioGrid}`}>
-          <div className={styles.bioAvatar}>
-            <div className={styles.avatarPlaceholder}>
-              <span>MA</span>
-            </div>
-          </div>
-          <div className={styles.bioText}>
-            <p>{t('bio')}</p>
-          </div>
-        </div>
-      </section>
+      <div className={`container ${styles.body}`}>
+        <p className={styles.bio}>{t('bio')}</p>
 
-      <section className={`section ${styles.skillsSection}`}>
-        <div className="container">
-          <h2 className="section-title">{t('skills')}</h2>
-          <div className={styles.skillsGrid}>
-            {skills.map((skill, i) => (
-              <div key={skill.name.en} className={styles.skillItem}>
-                <div className={styles.skillHeader}>
-                  <span className={styles.skillName}>{skill.name[locale] || skill.name.en}</span>
-                  <span className={styles.skillLevel}>{skill.level}%</span>
-                </div>
-                <div className={styles.skillBar}>
-                  <div
-                    className={styles.skillFill}
-                    style={{
-                      width: `${skill.level}%`,
-                      animationDelay: `${i * 0.1}s`
-                    }}
-                  />
-                </div>
-              </div>
+        <section className={styles.block} aria-labelledby="about-skills">
+          <h2 id="about-skills" className={styles.blockTitle}>{t('skills')}</h2>
+          <ul className={styles.skills}>
+            {skills.map(skill => (
+              <li key={skill.name.en} className={styles.skill}>
+                <span className={styles.skillName}>{skill.name[locale] || skill.name.en}</span>
+                <span className={`${styles.skillValue} nums`}>{skill.level}%</span>
+                <span className={styles.skillBar} aria-hidden="true">
+                  <span className={styles.skillFill} style={{ width: `${skill.level}%` }} />
+                </span>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
+          </ul>
+        </section>
 
-      <section className={`section ${styles.expSection}`}>
-        <div className="container">
-          <h2 className="section-title">{t('experience')}</h2>
-          <div className={styles.timeline}>
-            {experience.map((exp, i) => (
-              <div key={i} className={`glass-card ${styles.timelineItem}`}>
-                <div className={styles.timelineDot}></div>
-                <div className={styles.timelineContent}>
-                  <span className={styles.period}>{exp.period[locale]}</span>
-                  <h3 className={styles.expTitle}>{exp.title[locale]}</h3>
-                  <p className={styles.company}>{exp.company}</p>
-                  <p className={styles.expDesc}>{exp.description[locale]}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        <section className={styles.block} aria-labelledby="about-experience">
+          <h2 id="about-experience" className={styles.blockTitle}>{t('experience')}</h2>
+          <Timeline
+            items={experience}
+            locale={locale}
+            getTitle={item => item.title[locale]}
+            getOrganization={item => item.company}
+          />
+        </section>
 
-      <section className={`section ${styles.expSection}`}>
-        <div className="container">
-          <h2 className="section-title">{t('education')}</h2>
-          <div className={styles.timeline}>
-            {education.map((edu, i) => (
-              <div key={i} className={`glass-card ${styles.timelineItem}`}>
-                <div className={styles.timelineDot}></div>
-                <div className={styles.timelineContent}>
-                  <span className={styles.period}>{edu.period[locale]}</span>
-                  <h3 className={styles.expTitle}>{edu.degree[locale]}</h3>
-                  <p className={styles.company}>{edu.school}</p>
-                  <p className={styles.expDesc}>{edu.description[locale]}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
+        <section className={styles.block} aria-labelledby="about-education">
+          <h2 id="about-education" className={styles.blockTitle}>{t('education')}</h2>
+          <Timeline
+            items={education}
+            locale={locale}
+            getTitle={item => item.degree[locale]}
+            getOrganization={item => item.school}
+          />
+        </section>
+      </div>
+    </>
   );
 }

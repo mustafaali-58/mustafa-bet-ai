@@ -12,6 +12,7 @@ import {
 import { formatDate } from '@/lib/format';
 import { buildMetadata, postJsonLd } from '@/lib/seo';
 import BlogCard from '@/components/BlogCard';
+import ExternalIcon from '@/components/ExternalIcon';
 import JsonLd from '@/components/JsonLd';
 import Newsletter from '@/components/Newsletter';
 import styles from './BlogPost.module.css';
@@ -47,55 +48,64 @@ export default async function BlogPostPage({ params }) {
   if (!post) notFound();
 
   const t = await getTranslations({ locale, namespace: 'blog' });
+  const tA11y = await getTranslations({ locale, namespace: 'a11y' });
   const htmlContent = await renderMarkdown(post.content);
   const relatedPosts = getRelatedPosts(slug, locale, 3);
   const { source, sourceName } = post.frontmatter;
+  const isNews = post.type === 'news';
 
   return (
-    <div className={styles.page}>
+    <>
       <JsonLd data={postJsonLd(post, locale)} />
+
       <article className={`container ${styles.article}`}>
-        <Link href="/blog" className={styles.backLink}>
+        <Link href="/blog" className={styles.back}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+            <polyline points="15 18 9 12 15 6" />
           </svg>
           {t('back_to_blog')}
         </Link>
 
         <header className={styles.header}>
-          <div className={styles.meta}>
+          <p className={`${styles.meta} nums`}>
             <time dateTime={post.frontmatter.date}>
               {t('published')}: {formatDate(post.frontmatter.date, locale)}
             </time>
-            <span className={styles.readTime}>{post.readingTime} {t('min_read')}</span>
-          </div>
+            <span>{post.readingTime} {t('min_read')}</span>
+          </p>
           <h1 className={styles.title}>{post.frontmatter.title}</h1>
           {post.frontmatter.description && (
-            <p className={styles.description}>{post.frontmatter.description}</p>
+            <p className={styles.lead}>{post.frontmatter.description}</p>
           )}
-          <div className={styles.tags}>
-            {post.frontmatter.tags.map(tag => (
-              <span key={tag} className="tag">{tag}</span>
-            ))}
-          </div>
+          {post.frontmatter.tags.length > 0 && (
+            <ul className={styles.tags}>
+              {post.frontmatter.tags.map(tag => (
+                <li key={tag} className="tag">{tag}</li>
+              ))}
+            </ul>
+          )}
         </header>
 
-        {post.type === 'news' && (
-          <aside className={styles.disclosure}>
-            <span className={styles.disclosureBadge}>{t('news_badge')}</span>
+        {isNews && (
+          <aside className={styles.note}>
+            <p className={styles.noteTitle}>{t('news_badge')}</p>
             <p>
               {source
                 ? t('news_disclosure_source', { source: sourceName || new URL(source).hostname.replace(/^www\./, '') })
                 : t('news_disclosure')}
-              {source && (
-                <>
-                  {' '}
-                  <a href={source} target="_blank" rel="noopener noreferrer nofollow">
-                    {t('read_original')}
-                  </a>
-                </>
-              )}
             </p>
+            {source && (
+              <a
+                href={source}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className={styles.noteLink}
+                aria-label={`${t('read_original')} (${tA11y('external')})`}
+              >
+                {t('read_original')}
+                <ExternalIcon />
+              </a>
+            )}
           </aside>
         )}
 
@@ -107,14 +117,15 @@ export default async function BlogPostPage({ params }) {
 
       <div className={`container ${styles.after}`}>
         {relatedPosts.length > 0 && (
-          <section className={styles.related}>
-            <h2 className={styles.relatedTitle}>{t('related')}</h2>
-            <div className={styles.relatedGrid}>
+          <section>
+            <div className="section-head">
+              <h2 className="section-title">{t('related')}</h2>
+            </div>
+            <div>
               {relatedPosts.map(related => (
                 <BlogCard
                   key={related.slug}
                   post={related}
-                  readMore={t('read_more')}
                   minRead={t('min_read')}
                   newsBadge={t('news_badge')}
                   locale={locale}
@@ -125,6 +136,6 @@ export default async function BlogPostPage({ params }) {
         )}
         <Newsletter />
       </div>
-    </div>
+    </>
   );
 }

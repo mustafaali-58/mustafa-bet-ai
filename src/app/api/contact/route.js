@@ -71,11 +71,11 @@ export async function POST(request) {
       subject: `Siteden yeni mesaj: ${name}`,
       text: `Gönderen: ${name} <${email}>\n\n${message}`,
       html: `
-        <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #6366f1;">Siteden yeni mesaj</h2>
+        <div style="font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; color: #1a222d; max-width: 600px; margin: 0 auto; padding: 24px; line-height: 1.6;">
+          <h2 style="margin: 0 0 12px; color: #1a222d; font-size: 22px;">Siteden yeni mesaj</h2>
           <p><strong>Gönderen:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p>
-          <p style="white-space: pre-wrap; padding: 16px; background: #f5f5fa; border-radius: 8px;">${escapeHtml(message)}</p>
-          <p style="font-size: 13px; color: #666;">Yanıtla düğmesi doğrudan gönderene yazar.</p>
+          <p style="white-space: pre-wrap; padding: 16px; background: #f2f4f7; border: 1px solid #d4dae2; border-radius: 4px;">${escapeHtml(message)}</p>
+          <p style="font-size: 13px; color: #4f5b6b;">Yanıtla düğmesi doğrudan gönderene yazar.</p>
         </div>
       `
     });

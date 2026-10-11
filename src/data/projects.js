@@ -25,12 +25,12 @@ export const projects = [
       en: 'Personal Portfolio'
     },
     description: {
-      tr: 'Next.js, çoklu dil desteği ve Midnight Aurora tasarım konseptini kullanan modern, performanslı kişisel web sitesi.',
-      en: 'A modern, high-performance personal website built with Next.js, multilingual support, and the Midnight Aurora design concept.'
+      tr: 'Next.js ve çoklu dil desteğiyle geliştirilmiş modern, performanslı kişisel web sitesi.',
+      en: 'A modern, high-performance personal website built with Next.js and multilingual support.'
     },
     tags: ['Next.js', 'CSS', 'i18n', 'MDX'],
     category: 'web',
-    image: '/images/projects/portfolio.png',
+    image: '/images/projects/portfolio-site.png',
     liveUrl: 'https://mustafaalisolmazgul.com.tr',
     githubUrl: null,
     featured: true

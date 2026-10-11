@@ -16,9 +16,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+You can start editing the page by modifying `src/app/[locale]/page.js`. The page auto-updates as you edit the file.
 
 ## Learn More
 
@@ -48,6 +46,19 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 | `SITE_URL` | Hayır | Onay bağlantılarının kök adresi. Varsayılan: `https://mustafaalisolmazgul.com.tr`. |
 
 Bülten çift onaylıdır: form yalnızca onay e-postası gönderir, adres bağlantıya tıklanınca listeye eklenir.
+
+## Tasarım
+
+Tema, `src/app/globals.css` içindeki belirteçlerle (renk, yazı boyutu, aralık) tanımlıdır; bileşenler yalnızca bu belirteçleri kullanır.
+
+- **Renk:** nötr kâğıt/mürekkep tonları ve tek bir vurgu rengi (`--accent`). Vurgu rengi yalnızca tıklanabilir öğelerde, yeşil ve kırmızı yalnızca durum mesajlarında kullanılır.
+- **Açık/koyu tema:** kayıtlı tercih yoksa ziyaretçinin cihaz ayarı izlenir. Üst menüdeki düğmeyle cihaz ayarından farklı bir tema seçilirse tercih tarayıcıda saklanır; cihaz ayarına dönülünce kayıt silinir.
+- **Yazı tipi:** IBM Plex Sans (`@fontsource-variable/ibm-plex-sans`, siteyle birlikte sunulur). Başlıklar aynı ailenin dar kesimiyle (`font-stretch: 75%`) dizilir. `globals.css` başındaki `Plex Fallback` tanımları, yazı tipi yüklenene kadar görünen yedek yazı tipini aynı ölçülere getirir ve sayfanın kaymasını önler; yazı tipi değiştirilirse bu oranlar yeniden ölçülmelidir.
+- **Paylaşım görseli ve simgeler:** `public/og.png`, `src/app/icon.png`, `src/app/apple-icon.png`, `src/app/favicon.ico`.
+
+## Yayın
+
+Site, `.github/workflows/auto-blog.yml` iş akışıyla yayına alınır: günde iki kez çalışır, yeni bir haber özeti üretir ve siteyi Vercel'e gönderir. Yazı üretmeden yalnızca yayına almak için iş akışı elle başlatılırken **skip_blog** seçeneği işaretlenir.
 
 ## Ziyaretçi İstatistikleri
 
