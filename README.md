@@ -34,3 +34,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Ortam Değişkenleri
+
+| Değişken | Zorunlu | Açıklama |
+| --- | --- | --- |
+| `GEMINI_API_KEY` | Sohbet botu için | `/api/chat` ve blog üretim betiği kullanır. |
+| `OPENAI_API_KEY` | Hayır | Blog üretim betiğinde Gemini başarısız olursa yedek. |
+| `RESEND_API_KEY` | Bülten için | Onay e-postasını gönderir ve onaylanan aboneleri Resend kişi listesine kaydeder. Anahtarın tam erişimli olması gerekir (yalnızca gönderim yetkili anahtar kişi ekleyemez). |
+| `RESEND_SEGMENT_ID` | Hayır | Tanımlıysa onaylanan aboneler bu Resend segmentine eklenir. |
+| `NEWSLETTER_SECRET` | Hayır | Onay bağlantılarını imzalayan sır. Tanımlı değilse `RESEND_API_KEY` kullanılır. |
+| `SITE_URL` | Hayır | Onay bağlantılarının kök adresi. Varsayılan: `https://mustafaalisolmazgul.com.tr`. |
+
+Bülten çift onaylıdır: form yalnızca onay e-postası gönderir, adres bağlantıya tıklanınca listeye eklenir.

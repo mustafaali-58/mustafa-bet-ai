@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import styles from './Newsletter.module.css';
 
 export default function Newsletter() {
   const t = useTranslations('newsletter');
+  const locale = useLocale();
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState(null); // null, 'loading', 'success', 'error'
 
@@ -18,7 +19,7 @@ export default function Newsletter() {
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email, locale })
       });
       
       if (res.ok) {

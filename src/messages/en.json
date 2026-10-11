@@ -68,7 +68,7 @@
     "placeholder": "Your email address",
     "subscribe": "Subscribe",
     "subscribing": "Subscribing...",
-    "success": "Successfully subscribed! 🎉",
+    "success": "We sent a confirmation link to your email. Check your inbox to complete your subscription.",
     "error": "Something went wrong. Please try again."
   },
   "contact": {
