@@ -11,7 +11,7 @@
     "greeting": "Merhaba, ben",
     "name": "Mustafa Ali Solmazgül",
     "title": "Veri Analisti & Teknoloji Uzmanı",
-    "description": "Veri analitiği ve bilgisayar sistemleri altyapıları ile şirket süreçlerine değer katıyorum.",
+    "description": "Veriyi karara, hedefi sonuca dönüştürürüm. Arkamda teknik elemanlık, eğitmenlik ve altı yıla yakın yönettiğim kendi şirketim var.",
     "cta_projects": "Projelerimi Gör",
     "cta_contact": "İletişime Geç",
     "fact_organization": "Kurum",
@@ -29,11 +29,14 @@
   },
   "about": {
     "title": "Hakkımda",
-    "subtitle": "Bağımsız, kendine güvenen, istediğini alan, aşırı inatçı ve arkadaş canlısı",
-    "bio": "Veri analitiği, bilgisayar sistemleri ve AutoCAD üzerine yıllara dayanan tecrübemle, detaylara odaklanan ve her zaman en iyisini hedefleyen bir profesyonelim. SASA Polyester bünyesinde Veri Analisti olarak görev yapıyorum.",
+    "subtitle": "Veriyi karara, hedefi sonuca dönüştürürüm.",
+    "bio": "Çalışma hayatına 2006'da teknik eleman olarak başladım. Ardından AutoCAD usta öğreticiliği yaptım, 2012'de kendi şirketimi kurup altı yıla yakın yönettim. 2019'dan beri SASA Polyester'de veri analisti olarak çalışıyor, ham veriyi üzerine karar verilebilecek açık raporlara dönüştürüyorum.",
+    "bio_more": "Bağımsız çalışırım, hedefimi net koyarım ve sonuca ulaşana kadar bırakmam; inatçılığım buradan gelir. Bir sistemi baştan sona anlamadan rahat etmem, öğrendiğimi de çevremle paylaşmayı severim.",
     "experience": "Deneyim",
     "skills": "Yetenekler",
     "education": "Eğitim",
+    "languages": "Diller",
+    "portrait_alt": "Mustafa Ali Solmazgül'ün siyah beyaz portresi",
     "meta_description": "Veri analitiği, raporlama, bilgisayar sistemleri ve AutoCAD alanlarındaki deneyimim, yeteneklerim ve eğitimim."
   },
   "projects": {

@@ -6,6 +6,7 @@ export const skills = [
   { name: { tr: 'Donanım ve Ağ', en: 'Hardware & Network' }, level: 80, category: 'backend' }
 ];
 
+// Deneyim, eğitim ve dil bilgileri LinkedIn profiliyle aynı tutulur.
 export const experience = [
   {
     title: { tr: 'Data Analyst & Reporter', en: 'Data Analyst & Reporter' },
@@ -36,23 +37,44 @@ export const experience = [
   },
   {
     title: { tr: 'Teknik Eleman', en: 'Technical Personnel' },
-    company: 'Gündüz Electronic & Pacific Computer',
-    period: { tr: 'Tem 2006 - Eyl 2007', en: 'Jul 2006 - Sep 2007' },
+    company: 'Gündüz Electronic',
+    period: { tr: 'Mar 2007 - Eyl 2007', en: 'Mar 2007 - Sep 2007' },
     description: {
-      tr: 'Elektronik ve bilgisayar sistemleri üzerine teknik destek çalışmaları.',
-      en: 'Technical support works on electronic and computer systems.'
+      tr: 'Elektronik sistemler üzerine teknik destek çalışmaları.',
+      en: 'Technical support work on electronic systems.'
+    }
+  },
+  {
+    title: { tr: 'Teknik Eleman', en: 'Technical Personnel' },
+    company: 'Pacific Computer',
+    period: { tr: 'Tem 2006 - Mar 2007', en: 'Jul 2006 - Mar 2007' },
+    description: {
+      tr: 'Bilgisayar sistemleri üzerine teknik destek çalışmaları.',
+      en: 'Technical support work on computer systems.'
     }
   }
 ];
 
 export const education = [
   {
-    degree: { tr: 'Elektrik', en: 'Electrical Engineering' },
-    school: 'Çukurova Üniversitesi',
-    period: { tr: '2009 - 2011', en: '2009 - 2011' },
+    degree: { tr: 'Elektrik', en: 'Electrical Program' },
+    institution: { tr: 'Çukurova Üniversitesi', en: 'Çukurova University' },
+    unit: { tr: 'Ceyhan Meslek Yüksekokulu', en: 'Ceyhan Vocational School' },
+    period: { tr: '2007 - 2010', en: '2007 - 2010' },
     description: {
       tr: 'Elektrik alanında teknik eğitim.',
-      en: 'Technical education in Electrical Engineering.'
+      en: 'Technical education in the electrical field.'
     }
+  }
+];
+
+export const languages = [
+  {
+    name: { tr: 'Türkçe', en: 'Turkish' },
+    level: { tr: 'Ana dil', en: 'Native' }
+  },
+  {
+    name: { tr: 'İngilizce', en: 'English' },
+    level: { tr: 'Profesyonel çalışma yetkinliği', en: 'Professional working proficiency' }
   }
 ];

@@ -56,6 +56,12 @@ Tema, `src/app/globals.css` içindeki belirteçlerle (renk, yazı boyutu, aralı
 - **Yazı tipi:** IBM Plex Sans (`@fontsource-variable/ibm-plex-sans`, siteyle birlikte sunulur). Başlıklar aynı ailenin dar kesimiyle (`font-stretch: 75%`) dizilir. `globals.css` başındaki `Plex Fallback` tanımları, yazı tipi yüklenene kadar görünen yedek yazı tipini aynı ölçülere getirir ve sayfanın kaymasını önler; yazı tipi değiştirilirse bu oranlar yeniden ölçülmelidir.
 - **Paylaşım görseli ve simgeler:** `public/og.png`, `src/app/icon.png`, `src/app/apple-icon.png`, `src/app/favicon.ico`.
 
+## Kişisel Bilgiler
+
+- **Tanıtım yazıları:** `src/messages/tr.json` ve `en.json` içinde `hero.description`, `about.subtitle`, `about.bio`, `about.bio_more`.
+- **Deneyim, eğitim, diller, yetenekler:** `src/data/skills.js` (LinkedIn profiliyle aynı tutulur). Hakkımda sayfası, ana sayfadaki bilgi kutusu ve sohbet asistanı bu dosyadan beslenir.
+- **Portre:** `public/images/profile/mustafa-ali-solmazgul.jpg` (4:5). Dosya değişirse `src/lib/seo.js` içindeki `PORTRAIT` ölçüleri de güncellenir.
+
 ## Yayın
 
 Site, `.github/workflows/auto-blog.yml` iş akışıyla yayına alınır: günde iki kez çalışır, yeni bir haber özeti üretir ve siteyi Vercel'e gönderir. Yazı üretmeden yalnızca yayına almak için iş akışı elle başlatılırken **skip_blog** seçeneği işaretlenir.

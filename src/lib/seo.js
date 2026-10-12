@@ -1,9 +1,12 @@
 import { routing } from '@/i18n/routing';
+import { education, languages } from '@/data/skills';
 import { socialLinks } from '@/data/social';
 
 export const SITE_URL = 'https://mustafaalisolmazgul.com.tr';
 export const SITE_NAME = 'Mustafa Ali Solmazgül';
 export const OG_IMAGE = { url: '/og.png', width: 1200, height: 630, alt: SITE_NAME };
+// Hakkımda sayfasındaki portre; yapısal veride kişinin görseli olarak da kullanılır.
+export const PORTRAIT = { url: '/images/profile/mustafa-ali-solmazgul.jpg', width: 768, height: 960 };
 
 const OG_LOCALE = { tr: 'tr_TR', en: 'en_US' };
 
@@ -83,8 +86,14 @@ export function personJsonLd(locale) {
     '@id': `${SITE_URL}/#person`,
     name: SITE_NAME,
     url: `${SITE_URL}/${locale}`,
+    image: `${SITE_URL}${PORTRAIT.url}`,
     jobTitle: JOB_TITLE[locale] || JOB_TITLE.tr,
     worksFor: { '@type': 'Organization', name: 'SASA Polyester Sanayi A.Ş.' },
+    alumniOf: education.map(item => ({
+      '@type': 'CollegeOrUniversity',
+      name: item.institution[locale] || item.institution.tr
+    })),
+    knowsLanguage: languages.map(item => item.name[locale] || item.name.tr),
     sameAs: socialLinks.filter(s => s.url.startsWith('http')).map(s => s.url)
   };
 }

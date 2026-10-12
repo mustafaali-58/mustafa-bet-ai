@@ -11,7 +11,7 @@
     "greeting": "Hi, I'm",
     "name": "Mustafa Ali Solmazgül",
     "title": "Data Analyst & Tech Specialist",
-    "description": "I add value to corporate processes through data analytics and computer system infrastructures.",
+    "description": "I turn data into decisions and goals into results. Behind me are hands-on technical work, teaching, and nearly six years of running my own company.",
     "cta_projects": "View Projects",
     "cta_contact": "Get in Touch",
     "fact_organization": "Organization",
@@ -29,11 +29,14 @@
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Independent, confident, highly persistent, and friendly",
-    "bio": "With years of experience in data analytics, computer systems, and AutoCAD, I am a detail-oriented professional who always aims for the best. I currently work as a Data Analyst & Reporter at SASA Polyester.",
+    "subtitle": "I turn data into decisions and goals into results.",
+    "bio": "I started working in 2006 as a technician. I went on to teach AutoCAD as a master instructor, and in 2012 I founded my own company, which I ran for nearly six years. Since 2019 I have worked as a data analyst at SASA Polyester, turning raw data into clear reports that people can act on.",
+    "bio_more": "I work independently, set a clear goal and stay with it until it is done; that is where my stubborn streak comes from. I am not at ease until I understand a system from end to end, and I enjoy sharing what I learn with the people around me.",
     "experience": "Experience",
     "skills": "Skills",
     "education": "Education",
+    "languages": "Languages",
+    "portrait_alt": "Black-and-white portrait of Mustafa Ali Solmazgül",
     "meta_description": "My experience, skills and education in data analytics, reporting, computer systems and AutoCAD."
   },
   "projects": {
