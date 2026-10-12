@@ -90,6 +90,12 @@ async function main() {
     console.log(`::warning::Ziyaretçi sayacı ${start} ile ${earliest} arasını kaçırdı (Hobby planı yalnızca son 31 günü verir).`);
     start = earliest;
   }
+  // Günler UTC'ye göre sayılır. Dosyadaki son gün bugünden ileriyse (elle
+  // düzenlenmiş olabilir) çift sayım olmaması için hiçbir şey yazılmaz.
+  if (start > today) {
+    console.log(`::warning::Ziyaretçi sayacı: dosyadaki son tamamlanan gün (${state.lastCompleteDay}) bugünden (${today}, UTC) ileri; dosya değiştirilmedi.`);
+    return;
+  }
 
   const rows = await query(`${start}T00:00:00.000Z`, `${today}T23:59:59.999Z`);
 
