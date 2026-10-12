@@ -1,7 +1,9 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { socialLinks } from '@/data/social';
 import { SITE_NAME } from '@/lib/seo';
+import { formatDate } from '@/lib/format';
+import { visitorSummary } from '@/lib/visitor-stats';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -9,6 +11,10 @@ export default function Footer() {
   const tNav = useTranslations('nav');
   const tHero = useTranslations('hero');
   const tContact = useTranslations('contact');
+  const locale = useLocale();
+  const stats = visitorSummary();
+  const numbers = new Intl.NumberFormat(locale);
+  const regionNames = new Intl.DisplayNames([locale], { type: 'region' });
 
   const quickLinks = [
     { href: '/', label: tNav('home') },
@@ -62,6 +68,42 @@ export default function Footer() {
             ))}
           </ul>
         </div>
+
+        {/* Ziyaretçi sayacı: Vercel Web Analytics verisi, yayınla birlikte güncellenir. */}
+        {stats.visitors > 0 && (
+          <div className={styles.stats}>
+            <h2 className={styles.columnTitle}>{t('visitors_title')}</h2>
+            <p className={styles.statLine}>
+              {t.rich('visitors_count', {
+                count: stats.visitors,
+                formatted: numbers.format(stats.visitors),
+                num: chunks => <span className={`${styles.statNumber} nums`}>{chunks}</span>
+              })}
+            </p>
+            <p className={styles.statLine}>
+              {t.rich('countries_count', {
+                count: stats.countryCount,
+                formatted: numbers.format(stats.countryCount),
+                num: chunks => <span className={`${styles.statNumber} nums`}>{chunks}</span>
+              })}
+            </p>
+            {stats.topCountries.length > 0 && (
+              <ul className={styles.countries} aria-label={t('top_countries')}>
+                {stats.topCountries.map(country => (
+                  <li key={country.code} className={styles.country}>
+                    <span>{regionNames.of(country.code) || country.code}</span>
+                    <span className="nums">{numbers.format(country.visitors)}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {stats.updatedAt && (
+              <p className={`${styles.statNote} nums`}>
+                {t('stats_updated', { date: formatDate(stats.updatedAt, locale) })}
+              </p>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="container">

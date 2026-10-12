@@ -44,6 +44,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 | `NEWSLETTER_SECRET` | Hayır | Onay bağlantılarını imzalayan sır. Tanımlı değilse `RESEND_API_KEY` kullanılır. |
 | `CONTACT_TO_EMAIL` | Hayır | İletişim formundan gelen mesajların iletileceği adres. Tanımlı değilse sitede yayımlanan iletişim adresi kullanılır. Form da `RESEND_API_KEY` ile gönderir. |
 | `SITE_URL` | Hayır | Onay bağlantılarının kök adresi. Varsayılan: `https://mustafaalisolmazgul.com.tr`. |
+| `GEMINI_API_BASE` | Hayır | Yalnızca denemeler için: sohbet isteklerini sahte bir Gemini sunucusuna yönlendirir. |
 
 Bülten çift onaylıdır: form yalnızca onay e-postası gönderir, adres bağlantıya tıklanınca listeye eklenir.
 
@@ -69,6 +70,12 @@ Site, `.github/workflows/auto-blog.yml` iş akışıyla yayına alınır: günde
 ## Ziyaretçi İstatistikleri
 
 Ziyaretçi, sayfa görüntüleme ve ülke verileri [Vercel Web Analytics](https://vercel.com/docs/analytics) ile toplanır (`src/app/[locale]/layout.js` içindeki `<Analytics />`). Çerez kullanmaz. Verilerin görünmesi için Vercel panelinde projenin **Analytics** sekmesinden **Enable** düğmesine basılmış olmalıdır.
+
+Alt bilgideki ziyaretçi ve ülke sayacı aynı veriden beslenir. Yayın iş akışı her çalıştığında `scripts/update-visitor-stats.mjs`, Web Analytics API'sinden günlük ve ülke kırılımlı sayıları okuyup `src/data/visitor-stats.json` dosyasına ekler; sayaç bu yüzden yayınla birlikte (günde iki kez) güncellenir. Hobby planı yalnızca son 31 günün verisini verdiği için tamamlanan günler dosyada birikir. Vercel anahtarı yalnızca GitHub'daki iş akışında kullanılır, sitenin çalışma ortamına konmaz.
+
+## Sohbet Asistanı
+
+`src/app/api/chat/route.js`, Gemini modellerini sırayla dener: önce düşünme adımı olmayan hızlı `gemini-3.5-flash-lite`; kota dolarsa (429), model kaldırılmışsa (404) ya da yanıt boş veya geç gelirse sıradaki model. Hepsi kotaya takılırsa ziyaretçiye "asistan şu anda çok yoğun" mesajı gösterilir. Hata ayrıntıları yalnızca Vercel loglarında görünür. Ücretsiz Gemini anahtarının kotaları model başınadır; sık hata görülürse [Google AI Studio](https://aistudio.google.com) üzerinden kota ve faturalandırma kontrol edilmelidir.
 
 ## Blog
 

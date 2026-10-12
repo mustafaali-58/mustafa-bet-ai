@@ -107,7 +107,12 @@
     "copyright": "All rights reserved.",
     "built_with": "Built with Next.js",
     "links": "Links",
-    "social": "Social"
+    "social": "Social",
+    "visitors_title": "Visitors",
+    "visitors_count": "<num>{formatted}</num> {count, plural, one {visitor} other {visitors}}",
+    "countries_count": "<num>{formatted}</num> {count, plural, one {country} other {countries}}",
+    "top_countries": "Top countries",
+    "stats_updated": "Last updated: {date}"
   },
   "theme": {
     "dark": "Dark",
@@ -128,6 +133,7 @@
     "suggestion_3": "What is his experience?",
     "placeholder": "Ask a question...",
     "error": "Something went wrong. Please try again.",
+    "busy": "The assistant is busy right now. Please try again in a few minutes.",
     "rate_limited": "Too many requests. Please try again in a moment.",
     "too_long": "Your message is too long. Please use at most 500 characters."
   },

@@ -107,7 +107,12 @@
     "copyright": "Tüm hakları saklıdır.",
     "built_with": "Next.js ile geliştirildi",
     "links": "Bağlantılar",
-    "social": "Sosyal"
+    "social": "Sosyal",
+    "visitors_title": "Ziyaretçiler",
+    "visitors_count": "<num>{formatted}</num> ziyaretçi",
+    "countries_count": "<num>{formatted}</num> ülke",
+    "top_countries": "En çok ziyaretçi gelen ülkeler",
+    "stats_updated": "Son güncelleme: {date}"
   },
   "theme": {
     "dark": "Karanlık",
@@ -128,6 +133,7 @@
     "suggestion_3": "Deneyimi nedir?",
     "placeholder": "Bir soru sorun...",
     "error": "Bir hata oluştu. Lütfen tekrar deneyin.",
+    "busy": "Asistan şu anda çok yoğun. Lütfen birkaç dakika sonra tekrar deneyin.",
     "rate_limited": "Çok fazla istek gönderdiniz. Lütfen biraz sonra tekrar deneyin.",
     "too_long": "Mesajınız çok uzun. Lütfen en fazla 500 karakter kullanın."
   },
