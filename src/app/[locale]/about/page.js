@@ -1,6 +1,7 @@
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import { skills, experience, education } from '@/data/skills';
-import { buildMetadata } from '@/lib/seo';
+import { skills, experience, education, languages } from '@/data/skills';
+import { PORTRAIT, buildMetadata } from '@/lib/seo';
 import PageHeader from '@/components/PageHeader';
 import styles from './About.module.css';
 
@@ -44,7 +45,24 @@ export default async function AboutPage({ params }) {
       <PageHeader title={t('title')} lead={t('subtitle')} />
 
       <div className={`container ${styles.body}`}>
-        <p className={styles.bio}>{t('bio')}</p>
+        {/* Giriş: solda tanıtım yazısı, sağda portre. */}
+        <div className={styles.intro}>
+          <div className={styles.introText}>
+            <p className={styles.bio}>{t('bio')}</p>
+            <p className={styles.bioMore}>{t('bio_more')}</p>
+          </div>
+          <figure className={styles.portrait}>
+            <Image
+              src={PORTRAIT.url}
+              alt={t('portrait_alt')}
+              width={PORTRAIT.width}
+              height={PORTRAIT.height}
+              sizes="(max-width: 820px) 14rem, 16rem"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </figure>
+        </div>
 
         <section className={styles.block} aria-labelledby="about-skills">
           <h2 id="about-skills" className={styles.blockTitle}>{t('skills')}</h2>
@@ -77,8 +95,20 @@ export default async function AboutPage({ params }) {
             items={education}
             locale={locale}
             getTitle={item => item.degree[locale]}
-            getOrganization={item => item.school}
+            getOrganization={item => `${item.institution[locale]}, ${item.unit[locale]}`}
           />
+        </section>
+
+        <section className={styles.block} aria-labelledby="about-languages">
+          <h2 id="about-languages" className={styles.blockTitle}>{t('languages')}</h2>
+          <ul>
+            {languages.map(language => (
+              <li key={language.name.en} className={styles.language}>
+                <span className={styles.languageName}>{language.name[locale]}</span>
+                <span className={styles.languageLevel}>{language.level[locale]}</span>
+              </li>
+            ))}
+          </ul>
         </section>
       </div>
     </>

@@ -64,7 +64,7 @@ export default async function HomePage({ params }) {
                 </div>
                 <div className={styles.cellWide}>
                   <dt>{t('fact_education')}</dt>
-                  <dd>{school.degree[locale]}, {school.school}</dd>
+                  <dd>{school.degree[locale]}, {school.institution[locale]}</dd>
                 </div>
               </dl>
             </div>
