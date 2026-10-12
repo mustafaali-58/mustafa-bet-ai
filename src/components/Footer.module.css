@@ -5,7 +5,7 @@
 
 .inner {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
   gap: var(--sp-6);
   padding-block: var(--sp-7) var(--sp-6);
 }
@@ -58,6 +58,42 @@
   text-decoration: underline;
 }
 
+/* Ziyaretçi sayacı */
+.statLine {
+  color: var(--ink-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+.statNumber {
+  margin-right: 0.25rem;
+  color: var(--ink);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+
+.countries {
+  display: grid;
+  gap: 0.125rem;
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--line);
+}
+
+.country {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  color: var(--ink-muted);
+  font-size: var(--fs-sm);
+}
+
+.statNote {
+  margin-top: var(--sp-2);
+  color: var(--ink-faint);
+  font-size: var(--fs-xs);
+}
+
 .bottom {
   padding-block: var(--sp-4);
   border-top: 1px solid var(--line);
@@ -69,6 +105,23 @@
   .inner {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     padding-block: var(--sp-6) var(--sp-5);
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+
+  /* Sayaç telefonda tam satır: güncelleme notu tek satıra sığar. */
+  .stats {
+    grid-column: 1 / -1;
+    max-width: 22rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  /* Orta genişlikte marka üstte, üç sütun altında. */
+  .inner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .brand {

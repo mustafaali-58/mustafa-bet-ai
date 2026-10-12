@@ -54,6 +54,7 @@ export default function ChatBot() {
       // Hata durumlarında metin sayfanın dilinde gösterilir.
       let content;
       if (res.ok && data.reply) content = data.reply;
+      else if (data.code === 'busy') content = t('busy');
       else if (res.status === 429) content = t('rate_limited');
       else if (res.status === 400) content = t('too_long');
       else content = t('error');

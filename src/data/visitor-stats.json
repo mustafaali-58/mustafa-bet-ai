@@ -1,0 +1,21 @@
+{
+  "since": "2026-10-12",
+  "lastCompleteDay": "2026-10-12",
+  "completed": {
+    "visitors": 4,
+    "pageviews": 18,
+    "countries": {
+      "TR": {
+        "visitors": 4,
+        "pageviews": 18
+      }
+    }
+  },
+  "today": {
+    "day": "2026-10-13",
+    "visitors": 0,
+    "pageviews": 0,
+    "countries": {}
+  },
+  "updatedAt": "2026-10-13T00:55:00.000Z"
+}

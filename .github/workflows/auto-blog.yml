@@ -36,6 +36,16 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node scripts/generate-blog.mjs
         
+      # Alt bilgideki ziyaretçi sayacı Vercel Web Analytics verisinden
+      # güncellenir. Sayaç güncellenemese de yayın sürer.
+      - name: Update visitor stats
+        if: ${{ !cancelled() }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: node scripts/update-visitor-stats.mjs
+
       # Blog üretimi başarısız olsa da site yayınlanır; çalıştırma yine de
       # başarısız görünür, böylece hata fark edilir.
       - name: Commit and Push
@@ -43,8 +53,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/content/blog/
-          git commit -m "chore: automated ai blog post" || echo "No changes to commit"
+          git add src/content/blog/ src/data/visitor-stats.json
+          git commit -m "chore: automated blog post and visitor stats" || echo "No changes to commit"
           git push
 
       - name: Deploy to Vercel
