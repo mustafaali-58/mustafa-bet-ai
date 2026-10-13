@@ -2,6 +2,9 @@ import { createHmac, timingSafeEqual } from 'crypto';
 
 export const SITE_URL = (process.env.SITE_URL || 'https://mustafaalisolmazgul.com.tr').replace(/\/+$/, '');
 export const FROM_ADDRESS = 'Mustafa Ali Solmazgül <hello@mustafaalisolmazgul.com.tr>';
+// Site sahibine giden bildirimlerin adresi (iletişim formu, ziyaretçi defteri).
+// Tanımlı değilse sitede yayımlanan iletişim adresi kullanılır.
+export const OWNER_EMAIL = process.env.CONTACT_TO_EMAIL || 'mustafaali58@hotmail.it';
 export const LOCALES = ['tr', 'en'];
 
 const TOKEN_TTL_MS = 48 * 60 * 60 * 1000;
