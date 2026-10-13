@@ -103,6 +103,26 @@
     "error_fallback": "The message cannot be sent right now. Please reach out directly using the links on this page.",
     "error_invalid": "Please enter your name, a valid email address and a message of at least 10 characters."
   },
+  "guestbook": {
+    "title": "Guestbook",
+    "description": "Notes from visitors. These notes are public; for a private message, use the form above.",
+    "form_title": "Leave a Note",
+    "name_label": "Your Name",
+    "message_label": "Your Note",
+    "submit": "Send Note",
+    "sending": "Sending...",
+    "privacy": "Your name and note are published publicly on this page once approved. No email address is required.",
+    "success": "Thank you! Your note will appear here once approved.",
+    "error": "Something went wrong. Please try again.",
+    "error_invalid": "Please enter your name and a note of at least 3 characters.",
+    "error_links": "Links are not allowed in notes.",
+    "error_rate": "Too many attempts. Please try again later.",
+    "empty": "No notes yet. Be the first to leave one.",
+    "loading": "Loading notes...",
+    "load_error": "Notes could not be loaded right now.",
+    "show_more": "Show More",
+    "list_label": "Visitor notes"
+  },
   "footer": {
     "copyright": "All rights reserved.",
     "built_with": "Built with Next.js",

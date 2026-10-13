@@ -1,11 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { getClientIp, rateLimit } from '@/lib/rate-limit';
-import { FROM_ADDRESS, normalizeEmail } from '@/lib/newsletter';
-
-// Mesajların iletileceği adres. Tanımlı değilse sitede zaten yayımlanan
-// iletişim adresi kullanılır.
-const CONTACT_TO = process.env.CONTACT_TO_EMAIL || 'mustafaali58@hotmail.it';
+import { FROM_ADDRESS, OWNER_EMAIL, normalizeEmail } from '@/lib/newsletter';
 
 const LIMITS = { name: 100, message: 5000, minMessage: 10 };
 // IP başına saatte 3 mesaj.
@@ -66,7 +62,7 @@ export async function POST(request) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
       from: FROM_ADDRESS,
-      to: CONTACT_TO,
+      to: OWNER_EMAIL,
       replyTo: email,
       subject: `Siteden yeni mesaj: ${name}`,
       text: `Gönderen: ${name} <${email}>\n\n${message}`,

@@ -45,6 +45,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 | `CONTACT_TO_EMAIL` | Hayır | İletişim formundan gelen mesajların iletileceği adres. Tanımlı değilse sitede yayımlanan iletişim adresi kullanılır. Form da `RESEND_API_KEY` ile gönderir. |
 | `SITE_URL` | Hayır | Onay bağlantılarının kök adresi. Varsayılan: `https://mustafaalisolmazgul.com.tr`. |
 | `GEMINI_API_BASE` | Hayır | Yalnızca denemeler için: sohbet isteklerini sahte bir Gemini sunucusuna yönlendirir. |
+| `BLOB_READ_WRITE_TOKEN` | Ziyaretçi defteri için | Notların saklandığı Vercel Blob deposunun anahtarı. Depo Vercel'de projeye bağlanınca kendiliğinden tanımlanır. |
+| `GUESTBOOK_ADMIN_KEY` | Ziyaretçi defteri yönetimi için | `/api/guestbook/admin` sayfasının giriş anahtarı. Uzun ve rastgele olmalıdır. |
+| `GUESTBOOK_LOCAL_DIR` | Hayır | Yalnızca yerel denemeler için: notları Blob yerine bu klasörde saklar. |
 
 Bülten çift onaylıdır: form yalnızca onay e-postası gönderir, adres bağlantıya tıklanınca listeye eklenir.
 
@@ -72,6 +75,15 @@ Site, `.github/workflows/auto-blog.yml` iş akışıyla yayına alınır: günde
 Ziyaretçi, sayfa görüntüleme ve ülke verileri [Vercel Web Analytics](https://vercel.com/docs/analytics) ile toplanır (`src/app/[locale]/layout.js` içindeki `<Analytics />`). Çerez kullanmaz. Verilerin görünmesi için Vercel panelinde projenin **Analytics** sekmesinden **Enable** düğmesine basılmış olmalıdır.
 
 Alt bilgideki ziyaretçi ve ülke sayacı aynı veriden beslenir. Yayın iş akışı her çalıştığında `scripts/update-visitor-stats.mjs`, Web Analytics API'sinden günlük ve ülke kırılımlı sayıları okuyup `src/data/visitor-stats.json` dosyasına ekler; sayaç bu yüzden yayınla birlikte (günde iki kez) güncellenir. Hobby planı yalnızca son 31 günün verisini verdiği için tamamlanan günler dosyada birikir. Vercel anahtarı yalnızca GitHub'daki iş akışında kullanılır, sitenin çalışma ortamına konmaz.
+
+## Ziyaretçi Defteri
+
+İletişim sayfasının altındaki defterde ziyaretçiler ad ve not bırakır (`src/components/Guestbook.js`, `src/app/api/guestbook/route.js`). E-posta istenmez.
+
+- **Onay:** yeni notlar önce bekler, siteye ancak onaylanınca çıkar. Her yeni not için `CONTACT_TO_EMAIL` adresine (yoksa sitedeki iletişim adresine) bildirim e-postası gider; e-posta gitmese de not yönetim sayfasında görünür.
+- **Yönetim:** `https://mustafaalisolmazgul.com.tr/api/guestbook/admin` adresinde `GUESTBOOK_ADMIN_KEY` ile giriş yapılır; bekleyen notlar **Yayınla** ya da **Sil**, yayındakiler **Kaldır** ile yönetilir. Onaylanan not sitede birkaç dakika içinde görünür (liste CDN'de iki dakika önbelleğe alınır). Anahtar değiştirilirse site yeniden yayına alınmalıdır.
+- **Depolama:** projeye bağlı özel (private) Vercel Blob deposu `site-guestbook`. Bekleyen her not `guestbook/pending/<id>.json`, yayındakiler `guestbook/approved.json` dosyasındadır (en fazla 300 not).
+- **Spam önlemleri:** bağlantı içeren notlar reddedilir; görünmez bir tuzak alan ve form doldurma süresi botları ayıklar; aynı adresten saatte en fazla 3 not gönderilebilir. Yönetim sayfasında saatte 10 hatalı denemeden sonra giriş geçici olarak kapanır.
 
 ## Sohbet Asistanı
 

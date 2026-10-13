@@ -103,6 +103,26 @@
     "error_fallback": "Mesaj şu anda gönderilemiyor. Lütfen bu sayfadaki bağlantılardan doğrudan ulaşın.",
     "error_invalid": "Lütfen adınızı, geçerli bir e-posta adresini ve en az 10 karakterlik bir mesaj girin."
   },
+  "guestbook": {
+    "title": "Ziyaretçi Defteri",
+    "description": "Siteye uğrayanların notları. Bu notlar herkese açıktır; bana özel bir mesaj için yukarıdaki formu kullanın.",
+    "form_title": "Not Bırakın",
+    "name_label": "Adınız",
+    "message_label": "Notunuz",
+    "submit": "Notu Gönder",
+    "sending": "Gönderiliyor...",
+    "privacy": "Adınız ve notunuz onaylandıktan sonra bu sayfada herkese açık olarak yayımlanır. E-posta adresi istenmez.",
+    "success": "Teşekkürler! Notunuz onaylandıktan sonra burada görünecek.",
+    "error": "Bir hata oluştu. Lütfen tekrar deneyin.",
+    "error_invalid": "Lütfen adınızı ve en az 3 karakterlik bir not yazın.",
+    "error_links": "Notlarda bağlantı paylaşılamaz.",
+    "error_rate": "Çok fazla deneme yaptınız. Lütfen daha sonra tekrar deneyin.",
+    "empty": "Henüz not yok. İlk notu siz bırakın.",
+    "loading": "Notlar yükleniyor...",
+    "load_error": "Notlar şu anda yüklenemedi.",
+    "show_more": "Daha Fazla Göster",
+    "list_label": "Ziyaretçi notları"
+  },
   "footer": {
     "copyright": "Tüm hakları saklıdır.",
     "built_with": "Next.js ile geliştirildi",

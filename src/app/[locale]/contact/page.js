@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { buildMetadata } from '@/lib/seo';
 import PageHeader from '@/components/PageHeader';
+import Guestbook from '@/components/Guestbook';
 import ContactForm from './ContactForm';
 
 export async function generateMetadata({ params }) {
@@ -23,6 +24,9 @@ export default async function ContactPage({ params }) {
     <>
       <PageHeader title={t('title')} lead={t('subtitle')} />
       <ContactForm />
+      <div className="container">
+        <Guestbook />
+      </div>
     </>
   );
 }
