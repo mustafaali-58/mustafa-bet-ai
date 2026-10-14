@@ -13,9 +13,14 @@
   },
   "today": {
     "day": "2026-10-14",
-    "visitors": 0,
-    "pageviews": 0,
-    "countries": {}
+    "visitors": 1,
+    "pageviews": 1,
+    "countries": {
+      "TR": {
+        "visitors": 1,
+        "pageviews": 1
+      }
+    }
   },
-  "updatedAt": "2026-10-14T03:14:43.493Z"
+  "updatedAt": "2026-10-14T16:22:29.271Z"
 }
