@@ -1,26 +1,21 @@
 {
   "since": "2026-10-12",
-  "lastCompleteDay": "2026-10-13",
+  "lastCompleteDay": "2026-10-14",
   "completed": {
-    "visitors": 6,
-    "pageviews": 22,
+    "visitors": 7,
+    "pageviews": 23,
     "countries": {
       "TR": {
-        "visitors": 6,
-        "pageviews": 22
+        "visitors": 7,
+        "pageviews": 23
       }
     }
   },
   "today": {
-    "day": "2026-10-14",
-    "visitors": 1,
-    "pageviews": 1,
-    "countries": {
-      "TR": {
-        "visitors": 1,
-        "pageviews": 1
-      }
-    }
+    "day": "2026-10-15",
+    "visitors": 0,
+    "pageviews": 0,
+    "countries": {}
   },
-  "updatedAt": "2026-10-14T16:22:29.271Z"
+  "updatedAt": "2026-10-15T02:53:12.920Z"
 }
