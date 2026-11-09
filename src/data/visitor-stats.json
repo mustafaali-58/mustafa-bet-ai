@@ -1,6 +1,6 @@
 {
   "since": "2026-10-12",
-  "lastCompleteDay": "2026-11-07",
+  "lastCompleteDay": "2026-11-08",
   "completed": {
     "visitors": 10,
     "pageviews": 34,
@@ -12,10 +12,10 @@
     }
   },
   "today": {
-    "day": "2026-11-08",
+    "day": "2026-11-09",
     "visitors": 0,
     "pageviews": 0,
     "countries": {}
   },
-  "updatedAt": "2026-11-08T17:31:20.787Z"
+  "updatedAt": "2026-11-09T04:16:53.501Z"
 }
