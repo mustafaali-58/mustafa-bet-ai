@@ -1,30 +1,25 @@
 {
   "since": "2026-10-12",
-  "lastCompleteDay": "2026-11-22",
+  "lastCompleteDay": "2026-11-23",
   "completed": {
-    "visitors": 13,
-    "pageviews": 37,
+    "visitors": 15,
+    "pageviews": 39,
     "countries": {
       "TR": {
         "visitors": 11,
         "pageviews": 35
       },
       "US": {
-        "visitors": 2,
-        "pageviews": 2
+        "visitors": 4,
+        "pageviews": 4
       }
     }
   },
   "today": {
-    "day": "2026-11-23",
-    "visitors": 2,
-    "pageviews": 2,
-    "countries": {
-      "US": {
-        "visitors": 2,
-        "pageviews": 2
-      }
-    }
+    "day": "2026-11-24",
+    "visitors": 0,
+    "pageviews": 0,
+    "countries": {}
   },
-  "updatedAt": "2026-11-23T23:23:25.378Z"
+  "updatedAt": "2026-11-24T21:58:57.276Z"
 }
